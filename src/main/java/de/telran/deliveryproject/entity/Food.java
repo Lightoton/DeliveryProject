@@ -16,16 +16,17 @@ public class Food {
     private BigDecimal price;
     private LocalDateTime cookingTime;
     private LocalDateTime createdAt;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Food food = (Food) o;
-        return Objects.equals(fId, food.fId) && Objects.equals(title, food.title) && Objects.equals(calorie, food.calorie) && Objects.equals(price, food.price) && Objects.equals(cookingTime, food.cookingTime) && Objects.equals(createdAt, food.createdAt);
+        return Objects.equals(fId, food.fId) && Objects.equals(title, food.title) && Objects.equals(price, food.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fId, title, calorie, price, cookingTime, createdAt);
+        return Objects.hash(fId, title, price);
     }
 }

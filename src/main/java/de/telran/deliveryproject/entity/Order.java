@@ -27,11 +27,11 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(oId, order.oId) && statusOrder == order.statusOrder && Objects.equals(finalAmount, order.finalAmount) && Objects.equals(createdAt, order.createdAt) && Objects.equals(updatedAt, order.updatedAt);
+        return Objects.equals(oId, order.oId) && statusOrder == order.statusOrder && Objects.equals(finalAmount, order.finalAmount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(oId, statusOrder, finalAmount, createdAt, updatedAt);
+        return Objects.hash(oId, statusOrder, finalAmount);
     }
 }

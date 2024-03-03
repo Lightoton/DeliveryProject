@@ -14,16 +14,17 @@ public class CategoryFood {
     private String title;
     private Set<Food> foods;
     private LocalDateTime createdAt;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CategoryFood that = (CategoryFood) o;
-        return Objects.equals(categoryId, that.categoryId) && Objects.equals(title, that.title) && Objects.equals(createdAt, that.createdAt);
+        return Objects.equals(categoryId, that.categoryId) && Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(categoryId, title, createdAt);
+        return Objects.hash(categoryId, title);
     }
 }

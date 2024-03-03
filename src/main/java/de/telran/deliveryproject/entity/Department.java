@@ -19,17 +19,17 @@ public class Department {
     private Set<Restaurant> restaurants;
     private String address;
     private LocalDateTime createdAt;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return Objects.equals(dId, that.dId) && Objects.equals(address, that.address) && Objects.equals(createdAt, that.createdAt);
+        return Objects.equals(dId, that.dId) && Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dId, address, createdAt);
+        return Objects.hash(dId, address);
     }
-
 }

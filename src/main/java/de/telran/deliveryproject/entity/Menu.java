@@ -16,16 +16,17 @@ public class Menu {
     private BigDecimal averagePrice;
     private Set<CategoryFood> categoryFoods;
     private LocalDateTime createdAt;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Menu menu = (Menu) o;
-        return Objects.equals(menuId, menu.menuId) && Objects.equals(title, menu.title) && Objects.equals(averagePrice, menu.averagePrice) && Objects.equals(createdAt, menu.createdAt);
+        return Objects.equals(menuId, menu.menuId) && Objects.equals(title, menu.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(menuId, title, averagePrice, createdAt);
+        return Objects.hash(menuId, title);
     }
 }
