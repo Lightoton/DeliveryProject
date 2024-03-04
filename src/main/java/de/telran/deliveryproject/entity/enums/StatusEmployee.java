@@ -3,6 +3,6 @@ package de.telran.deliveryproject.entity.enums;
 public enum StatusEmployee {
     WORK,
     NOTWORK,
-    ONVACATION,
+    ON_VACATION,
     DISMISSED
 }
