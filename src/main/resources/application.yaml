@@ -1,1 +1,10 @@
+spring:
+  main:
+    banner-mode: off
 
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/delivery_db
+    name: root
+    password: YSE444esylightoton
+    driver-class-name: com.mysql.cj.jdbc.Driver
