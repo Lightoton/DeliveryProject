@@ -1,6 +1,9 @@
 package de.telran.deliveryproject.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -9,11 +12,26 @@ import java.util.Set;
 import java.util.UUID;
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "restaurants")
 public class Restaurant {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "r_id")
     private UUID rId;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "address")
     private String address;
+
+
     private Set<Menu> menu;
+
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Override
