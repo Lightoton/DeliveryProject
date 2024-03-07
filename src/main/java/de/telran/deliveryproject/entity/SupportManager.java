@@ -36,7 +36,7 @@ public class SupportManager {
     private LocalDateTime terminationDate;
 
 
-    private UserInfo info;
+    private UserInfo userInfo;
 
     @Override
     public boolean equals(Object o) {

@@ -23,8 +23,8 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-//    @ManyToMany(mappedBy = "roles")
-//    private Set<UserInfo> users;
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserInfo> users;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "role_authority",

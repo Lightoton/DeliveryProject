@@ -23,10 +23,10 @@ public class UserInfo {
     private UUID infoId;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String firstname;
 
     @Column(name = "last_name")
-    private String lastName;
+    private String lastname;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -39,6 +39,7 @@ public class UserInfo {
 
     @Column(name = "password")
     private String password;
+
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
