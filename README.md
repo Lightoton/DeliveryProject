@@ -5,6 +5,7 @@ foods.
 ___
 
 ## Links...
+
 ___
 
 ## Database structure
@@ -26,27 +27,21 @@ ___
 
 ### Table Manager (Delivery's managers table)
 
-| Column name      | Type        | Description                                   |
-|------------------|-------------|-----------------------------------------------|
-| id               | binary(16)  | id key of row - unique, not null, primary key |
-| first_name       | varchar(50) | manager's name                                |         
-| last_name        | varchar(50) | manager's last name                           |                              
-| salary           | double      | manager's salary                              |                                   
-| phone_number     | varchar(20) | manager's phone number                        |                          
-| email            | varchar(60) | manager's email                               |
-| hire_date        | timestamp   | date of employment                            |
-| termination_date | timestamp   | date of dismissal                             |
+| Column name      | Type       | Description                                   |
+|------------------|------------|-----------------------------------------------|
+| id               | binary(16) | id key of row - unique, not null, primary key |
+| user_info        | binary(16) | id personal information about the user        |         
+| salary           | double     | manager's salary                              |                                   
+| hire_date        | timestamp  | date of employment                            |
+| termination_date | timestamp  | date of dismissal                             |
 
 ### Table Support Manager (Delivery's support managers)
 
 | Column name      | Type        | Description                                   |
 |------------------|-------------|-----------------------------------------------|
 | id               | binary(16)  | id key of row - unique, not null, primary key |
-| first_name       | varchar(50) | support manager's name                        |         
-| last_name        | varchar(50) | support manager's last name                   |                              
+| user_info        | binary(16)  | id personal information about the user        |         
 | salary           | double      | support manager's salary                      |                                   
-| phone_number     | varchar(20) | support manager's phone number                |                          
-| email            | varchar(60) | support manager's email                       |
 | status_employee  | varchar(60) | support manager's status                      |
 | hire_date        | timestamp   | date of employment                            |
 | termination_date | timestamp   | date of dismissal                             |                                                 |
@@ -56,13 +51,10 @@ ___
 | Column name      | Type        | Description                                   |
 |------------------|-------------|-----------------------------------------------|
 | id               | int         | id key of row - unique, not null, primary key |
-| first_name       | varchar(50) | courier's name                                |         
-| last_name        | varchar(50) | courier's last name                           | 
+| user_info        | binary(16)  | id personal information about the user        |         
 | rating           | varchar(10) | courier's rating                              | 
 | status_courier   | varchar(60) | courier's status                              | 
 | salary           | double      | courier's salary                              | 
-| email            | varchar(60) | courier's email                               |
-| phone_number     | varchar(20) | courier's phone number                        |
 | status_employee  | varchar(60) | courier's status                              |
 | hire_date        | timestamp   | date of employment                            |
 | termination_date | timestamp   | date of dismissal                             | 
@@ -72,11 +64,8 @@ ___
 | Column name       | Type        | Description                                   |
 |-------------------|-------------|-----------------------------------------------|
 | id                | binary(16)  | id key of row - unique, not null, primary key | 
-| first_name        | varchar(50) | client's name                                 |         
-| last_name         | varchar(50) | client's last name                            | 
+| user_info         | binary(16)  | id personal information about the user        |         
 | date_of_birth     | timestamp   | client's date of birth                        | 
-| email             | varchar(60) | client's email                                |
-| phone_number      | varchar(20) | client's phone number                         | 
 | rating            | varchar(10) | client's rating                               |
 | address           | varchar(80) | client's address                              |
 | registration_date | timestamp   | timestamp of row creation                     | 
@@ -105,7 +94,7 @@ ___
 | 	menu_id           | binary(16)  | menu's id                                       | 
 | 	registration_date | timestamp   | date of registration in the delivery department |
 
-### Table Menu (Restaurant's menus)
+### Table Menu (Restaurant's menu)
 
 | Column name       | Type        | Description                                   |
 |-------------------|-------------|-----------------------------------------------|
@@ -134,3 +123,40 @@ ___
 | 	price                | binary(16)  | food's id                                     | 
 | 	finishing_cooking_at | timestamp   | time when the food will be prepared           | 
 | 	created_at           | timestamp   | date the food was added to the menu           |
+
+### Table UserInfo (User's info)
+
+| Column name  | Type        | Description                                   |
+|--------------|-------------|-----------------------------------------------|
+| id           | binary(16)  | id key of row - unique, not null, primary key | 
+| firstname    | varchar(50) | user's name                                   |
+| lastname     | varchar(50) | user's last name                              | 
+| email        | varchar(60) | user's email                                  |
+| phone_number | varchar(20) | user's phone number                           | 
+| username     | varchar(50) | user's username                               |
+| password     | varchar(32) | user's password                               |
+| role         | binary(16)  | user's roles                                  |
+| created_at   | timestamp   | date of creation of user information          |
+| updated_at   | timestamp   | date of update of user information            |
+
+### Table Role (User's roles)
+
+| Column name | Type        | Description                                   |
+|-------------|-------------|-----------------------------------------------|
+| 	id         | binary(16)  | id key of row - unique, not null, primary key | 
+| 	role_name  | varchar(80) | role's title                                  | 
+| 	authority  | binary(16)  | authority's id                                | 
+| 	created_at | timestamp   | date the food was added to the menu           |
+| created_at  | timestamp   | date of creation of role's information        |
+| updated_at  | timestamp   | date of update of role's information          |
+
+### Table Authority (Role's authority)
+
+| Column name | Type        | Description                                   |
+|-------------|-------------|-----------------------------------------------|
+| 	id         | binary(16)  | id key of row - unique, not null, primary key | 
+| 	authority  | varchar(80) | name of authority                             | 
+| 	role       | binary(16)  | role id                                       | 
+| 	created_at | timestamp   | date the food was added to the menu           |
+| created_at  | timestamp   | date of creation authority's information      |
+| updated_at  | timestamp   | date of update of authority's information     |
