@@ -44,7 +44,7 @@ ___
 | salary           | double      | support manager's salary                      |                                   
 | status_employee  | varchar(60) | support manager's status                      |
 | hire_date        | timestamp   | date of employment                            |
-| termination_date | timestamp   | date of dismissal                             |                                                 |
+| termination_date | timestamp   | date of dismissal                             |                                                 
 
 ### Table Courier (Delivery's couriers)
 
@@ -136,7 +136,6 @@ ___
 | username     | varchar(50) | user's username                               |
 | password     | varchar(32) | user's password                               |
 | role         | binary(16)  | user's roles                                  |
-| created_at   | timestamp   | date of creation of user information          |
 | updated_at   | timestamp   | date of update of user information            |
 
 ### Table Role (User's roles)
@@ -145,9 +144,7 @@ ___
 |-------------|-------------|-----------------------------------------------|
 | 	id         | binary(16)  | id key of row - unique, not null, primary key | 
 | 	role_name  | varchar(80) | role's title                                  | 
-| 	authority  | binary(16)  | authority's id                                | 
-| 	created_at | timestamp   | date the food was added to the menu           |
-| created_at  | timestamp   | date of creation of role's information        |
+| 	authority  | binary(16)  | authority's id                                |
 | updated_at  | timestamp   | date of update of role's information          |
 
 ### Table Authority (Role's authority)
@@ -156,7 +153,50 @@ ___
 |-------------|-------------|-----------------------------------------------|
 | 	id         | binary(16)  | id key of row - unique, not null, primary key | 
 | 	authority  | varchar(80) | name of authority                             | 
-| 	role       | binary(16)  | role id                                       | 
-| 	created_at | timestamp   | date the food was added to the menu           |
-| created_at  | timestamp   | date of creation authority's information      |
+| 	role       | binary(16)  | role id                                       |
 | updated_at  | timestamp   | date of update of authority's information     |
+
+### Enums Status Courier
+
+| Enum name                    | Description                                                                          |
+|------------------------------|--------------------------------------------------------------------------------------|
+| FREE                         | courier is available for ordering                                                    |
+| GET_ORDER                    | the courier took the order                                                           |
+| ON_THE_WAY_TO_THE_RESTAURANT | the courier accepted the order and goes to the restaurant                            |
+| ON_THE_WAY_TO_THE_CLIENT     | the courier has picked up the order from the restaurant and is heading to the client |
+| ARRIVED                      | the courier arrived to the client                                                    |
+
+### Enums Status Employee
+
+| Enum name   | Description                                             |
+|-------------|---------------------------------------------------------|
+| WORK        | employee is working                                     |
+| NOTWORK     | the employee does not work (not his shift or a day off) |
+| ON_VACATION | employee on vacation                                    |
+| DISMISSED   | employee fired                                          |
+
+### Enums Status Order
+
+| Enum name        | Description                   |
+|------------------|-------------------------------|
+| AWAITING_PAYMENT | the order is awaiting payment |
+| IN_PROGRESS      | the order is being fulfilled  |
+| COMPLETED        | order completed               |
+
+### Enums Rating
+
+| Enum name | Description |
+|-----------|-------------|
+| STAR0     |             |
+| STAR1     |             |
+| STAR2     |             |
+| STAR3     |             |
+| STAR4     |             |
+| STAR5     |             |
+| STAR6     |             |
+| STAR7     |             |
+| STAR8     |             |
+| STAR9     |             |
+| STAR10    |             |
+
+

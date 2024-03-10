@@ -37,7 +37,8 @@ public class Client {
     @Column(name = "registration_date")
     private LocalDateTime registrationDate;
 
-
+    @OneToOne
+    @JoinColumn(name = "info_id", referencedColumnName = "info_id")
     private UserInfo userInfo;
 
     @Override
@@ -51,5 +52,17 @@ public class Client {
     @Override
     public int hashCode() {
         return Objects.hash(uId, dateOfBirth, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "uId=" + uId +
+                ", dateOfBirth=" + dateOfBirth +
+                ", address='" + address + '\'' +
+                ", rating=" + rating +
+                ", registrationDate=" + registrationDate +
+                ", userInfo=" + userInfo +
+                '}';
     }
 }

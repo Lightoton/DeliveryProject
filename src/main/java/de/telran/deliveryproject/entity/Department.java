@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,12 +23,28 @@ public class Department {
     @Column(name = "d_id")
     private UUID dId;
 
-
+    @OneToOne
+    @JoinColumn(name = "manager_id", referencedColumnName = "m_id")
     private Manager manager;
+
+    @OneToMany
+    @JoinColumn(name = "sup_manager_id", referencedColumnName = "sm_id")
     private Set<SupportManager> supportManagers;
+
+    @OneToMany
+    @JoinColumn(name = "courier_id", referencedColumnName = "c_id")
     private Set<Courier> couriers;
+
+    @OneToMany
+    @JoinColumn(name = "client_id", referencedColumnName = "u_id")
     private Set<Client> clients;
+
+    @OneToMany
+    @JoinColumn(name = "order_id", referencedColumnName = "o_id")
     private Set<Order> orders;
+
+    @OneToMany
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "r_id")
     private Set<Restaurant> restaurants;
 
 
@@ -48,5 +65,20 @@ public class Department {
     @Override
     public int hashCode() {
         return Objects.hash(dId, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "dId=" + dId +
+                ", manager=" + manager +
+                ", supportManagers=" + supportManagers +
+                ", couriers=" + couriers +
+                ", clients=" + clients +
+                ", orders=" + orders +
+                ", restaurants=" + restaurants +
+                ", address='" + address + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

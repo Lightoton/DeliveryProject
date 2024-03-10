@@ -30,7 +30,8 @@ public class Menu {
     @Column(name = "average_price")
     private BigDecimal averagePrice;
 
-
+    @OneToMany
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Set<CategoryFood> categoryFoods;
 
 
@@ -48,5 +49,16 @@ public class Menu {
     @Override
     public int hashCode() {
         return Objects.hash(menuId, title);
+    }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuId=" + menuId +
+                ", title='" + title + '\'' +
+                ", averagePrice=" + averagePrice +
+                ", categoryFoods=" + categoryFoods +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

@@ -28,7 +28,8 @@ public class Restaurant {
     @Column(name = "address")
     private String address;
 
-
+    @OneToMany
+    @JoinColumn(name = "menu_id", referencedColumnName = "menu_id")
     private Set<Menu> menu;
 
     @Column(name = "created_at")
@@ -45,5 +46,16 @@ public class Restaurant {
     @Override
     public int hashCode() {
         return Objects.hash(rId, title, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "rId=" + rId +
+                ", title='" + title + '\'' +
+                ", address='" + address + '\'' +
+                ", menu=" + menu +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

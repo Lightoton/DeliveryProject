@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Setter
 @Table(name = "authorities")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Authority {
 
     @Id
@@ -24,5 +26,6 @@ public class Authority {
     private String authority;
 
     @ManyToMany(mappedBy = "authorities")
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     private Set<Role> roles;
 }

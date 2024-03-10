@@ -41,6 +41,7 @@ public class UserInfo {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     private Set<Role> roles;
 
     @Override
@@ -54,5 +55,19 @@ public class UserInfo {
     @Override
     public int hashCode() {
         return Objects.hash(infoId, phoneNumber, email, username, password);
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "infoId=" + infoId +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

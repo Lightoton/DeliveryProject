@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,11 +13,12 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "roles")
+@AllArgsConstructor
 @NoArgsConstructor
 public class Role {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
@@ -31,4 +33,14 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private Set<Authority> authorities;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                ", users=" + users +
+                ", authorities=" + authorities +
+                '}';
+    }
 }

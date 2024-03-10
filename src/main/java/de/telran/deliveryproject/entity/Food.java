@@ -49,4 +49,16 @@ public class Food {
     public int hashCode() {
         return Objects.hash(fId, title, price);
     }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "fId=" + fId +
+                ", title='" + title + '\'' +
+                ", calorie=" + calorie +
+                ", price=" + price +
+                ", cookingTime=" + cookingTime +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

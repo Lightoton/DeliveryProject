@@ -35,7 +35,8 @@ public class SupportManager {
     @Column(name = "termination_date")
     private LocalDateTime terminationDate;
 
-
+    @OneToOne
+    @JoinColumn(name = "info_id", referencedColumnName = "info_id")
     private UserInfo userInfo;
 
     @Override
@@ -49,5 +50,17 @@ public class SupportManager {
     @Override
     public int hashCode() {
         return Objects.hash(smId, salary);
+    }
+
+    @Override
+    public String toString() {
+        return "SupportManager{" +
+                "smId=" + smId +
+                ", salary=" + salary +
+                ", statusEmployee=" + statusEmployee +
+                ", hireDate=" + hireDate +
+                ", terminationDate=" + terminationDate +
+                ", userInfo=" + userInfo +
+                '}';
     }
 }

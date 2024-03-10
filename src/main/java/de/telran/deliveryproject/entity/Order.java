@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,7 +22,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "o_id")
-    private UUID oId;
+    private UUID id;
 
     @Column(name = "status_order")
     private StatusOrder statusOrder;
@@ -31,10 +30,20 @@ public class Order {
     @Column(name = "final_amount")
     private BigDecimal finalAmount;
 
-
+    @OneToOne
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "r_id")
     private Restaurant restaurant;
+
+    @OneToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "u_id")
     private Client client;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sup_manager_id", referencedColumnName = "sm_id")
     private SupportManager supportManager;
+
+    @OneToMany
+    @JoinColumn(name = "courier_id", referencedColumnName = "c_id")
     private Set<Courier> couriers;
 
     @Column(name = "created_at")
@@ -48,11 +57,26 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(oId, order.oId) && statusOrder == order.statusOrder && Objects.equals(finalAmount, order.finalAmount);
+        return Objects.equals(id, order.id) && statusOrder == order.statusOrder && Objects.equals(finalAmount, order.finalAmount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(oId, statusOrder, finalAmount);
+        return Objects.hash(id, statusOrder, finalAmount);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "oId=" + id +
+                ", statusOrder=" + statusOrder +
+                ", finalAmount=" + finalAmount +
+                ", restaurant=" + restaurant +
+                ", client=" + client +
+                ", supportManager=" + supportManager +
+                ", couriers=" + couriers +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

@@ -25,6 +25,8 @@ public class CategoryFood {
     @Column(name = "title")
     private String title;
 
+    @OneToMany
+    @JoinColumn(name = "food_id", referencedColumnName = "f_id")
     private Set<Food> foods;
 
     @Column(name = "created_at")
@@ -41,5 +43,15 @@ public class CategoryFood {
     @Override
     public int hashCode() {
         return Objects.hash(categoryId, title);
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryFood{" +
+                "categoryId=" + categoryId +
+                ", title='" + title + '\'' +
+                ", foods=" + foods +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
