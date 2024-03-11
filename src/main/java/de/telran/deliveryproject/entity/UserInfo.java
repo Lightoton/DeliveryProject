@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 import java.util.Set;
@@ -18,7 +19,9 @@ import java.util.UUID;
 @Table(name = "users_info")
 public class UserInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",
+            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
     @Column(name = "info_id")
     private UUID infoId;
 

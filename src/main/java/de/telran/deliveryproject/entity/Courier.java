@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,7 +23,9 @@ import java.util.UUID;
 public class Courier {
     @Id
     @Column(name = "c_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",
+            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
     private UUID cId;
 
     @Column(name = "salary")
