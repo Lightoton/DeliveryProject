@@ -135,7 +135,7 @@ ___
 | phone_number | varchar(20) | user's phone number                           | 
 | username     | varchar(50) | user's username                               |
 | password     | varchar(32) | user's password                               |
-| role         | binary(16)  | user's roles                                  |
+| role_id         | binary(16)  | user's roles                                  |
 | updated_at   | timestamp   | date of update of user information            |
 
 ### Table Role (User's roles)
@@ -144,7 +144,7 @@ ___
 |-------------|-------------|-----------------------------------------------|
 | 	id         | binary(16)  | id key of row - unique, not null, primary key | 
 | 	role_name  | varchar(80) | role's title                                  | 
-| 	authority  | binary(16)  | authority's id                                |
+| 	authority_id  | binary(16)  | authority's id                                |
 | updated_at  | timestamp   | date of update of role's information          |
 
 ### Table Authority (Role's authority)
@@ -153,7 +153,7 @@ ___
 |-------------|-------------|-----------------------------------------------|
 | 	id         | binary(16)  | id key of row - unique, not null, primary key | 
 | 	authority  | varchar(80) | name of authority                             | 
-| 	role       | binary(16)  | role id                                       |
+| 	role_id       | binary(16)  | role id                                       |
 | updated_at  | timestamp   | date of update of authority's information     |
 
 ### Enums Status Courier
