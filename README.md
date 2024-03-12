@@ -120,7 +120,7 @@ ___
 | 	id                   | binary(16)  | id key of row - unique, not null, primary key | 
 | 	title                | varchar(80) | food's title                                  | 
 | 	calorie              | varchar(80) | food's calorie                                | 
-| 	price                | binary(16)  | food's id                                     | 
+| 	price                | double  | food's price                                     | 
 | 	finishing_cooking_at | timestamp   | time when the food will be prepared           | 
 | 	created_at           | timestamp   | date the food was added to the menu           |
 
