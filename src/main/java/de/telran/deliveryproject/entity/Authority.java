@@ -22,13 +22,17 @@ public class Authority {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",
             strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @Column(name = "auth_id")
     private UUID id;
 
     @Column(name = "authority")
     private String authority;
 
-    @ManyToMany(mappedBy = "authorities")
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    @ManyToMany
+    @JoinTable(
+            name = "authority_roles",
+            joinColumns = @JoinColumn(name = "authority_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
 }

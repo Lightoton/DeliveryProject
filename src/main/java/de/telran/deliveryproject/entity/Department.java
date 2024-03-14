@@ -20,6 +20,7 @@ import java.util.UUID;
 @Table(name = "departments")
 public class Department {
     @Id
+    @Column(name = "d_id")
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",
             strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")

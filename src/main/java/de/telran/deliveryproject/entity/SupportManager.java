@@ -23,7 +23,7 @@ public class SupportManager {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",
             strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
-    @Column(name = "sm_Id")
+    @Column(name = "sm_id")
     private UUID smId;
 
     @Column(name = "salary")

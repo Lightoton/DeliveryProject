@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "menus")
+@Table(name = "menu")
 public class Menu {
     @Id
     @GeneratedValue(generator = "UUID")

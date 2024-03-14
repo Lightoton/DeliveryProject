@@ -44,8 +44,13 @@ public class UserInfo {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    @JoinTable(
+            name = "user_info_roles",
+            joinColumns = @JoinColumn(name = "info_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
+
 
     @Override
     public boolean equals(Object o) {
