@@ -41,7 +41,7 @@ public class Client {
     private LocalDateTime registrationDate;
 
     @OneToOne
-    @JoinColumn(name = "info_id", referencedColumnName = "info_id")
+    @JoinColumn(name = "info_id")
     private UserInfo userInfo;
 
     @Override

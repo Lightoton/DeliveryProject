@@ -46,7 +46,7 @@ public class Order {
     private SupportManager supportManager;
 
     @OneToMany
-    @JoinColumn(name = "courier_id", referencedColumnName = "c_id")
+    @JoinColumn(name = "c_id")
     private Set<Courier> couriers;
 
     @Column(name = "created_at")

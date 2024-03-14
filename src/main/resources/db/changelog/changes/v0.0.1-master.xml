@@ -13,6 +13,8 @@
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_authority.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_roles.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_user_info.sql"/>
+    <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_link_table_role_authority.sql"/>
+    <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_link_table_user_role.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_clients.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_couriers.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_sup_managers.sql"/>
@@ -26,6 +28,8 @@
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_authority.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_roles.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_user_info.sql"/>
+<!--    <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_link_table_role_authority.sql"/>-->
+    <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_link_table_user_role.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_clients.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_couriers.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_sup_managers.sql"/>

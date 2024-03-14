@@ -29,7 +29,7 @@ public class CategoryFood {
     private String title;
 
     @OneToMany
-    @JoinColumn(name = "food_id", referencedColumnName = "f_id")
+    @JoinColumn(name = "f_id")
     private Set<Food> foods;
 
     @Column(name = "created_at")

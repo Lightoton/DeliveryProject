@@ -8,9 +8,7 @@ create table if not exists user_info
     phone_number varchar(20) not null unique,
     username     varchar(50) not null unique,
     password     varchar(32) not null unique,
-    role_id      BINARY(16)  not null,
-    updated_at   timestamp   not null,
-    foreign key (role_id) references roles (role_id)
+    updated_at   timestamp   not null
 );
 -- Вставка данных о user в таблицу user_info
 # INSERT INTO user_info (info_id, firstname, lastname, email, phone_number, username, password, role_id, updated_at)

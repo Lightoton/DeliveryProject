@@ -34,7 +34,7 @@ public class Menu {
     private BigDecimal averagePrice;
 
     @OneToMany
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id")
     private Set<CategoryFood> categoryFoods;
 
 

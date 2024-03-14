@@ -32,7 +32,7 @@ public class Restaurant {
     private String address;
 
     @OneToMany
-    @JoinColumn(name = "menu_id", referencedColumnName = "menu_id")
+    @JoinColumn(name = "menu_id")
     private Set<Menu> menu;
 
     @Column(name = "created_at")

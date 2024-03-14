@@ -31,23 +31,23 @@ public class Department {
     private Manager manager;
 
     @OneToMany
-    @JoinColumn(name = "sup_manager_id", referencedColumnName = "sm_id")
+    @JoinColumn(name = "sm_id")
     private Set<SupportManager> supportManagers;
 
     @OneToMany
-    @JoinColumn(name = "courier_id", referencedColumnName = "c_id")
+    @JoinColumn(name = "c_id")
     private Set<Courier> couriers;
 
     @OneToMany
-    @JoinColumn(name = "client_id", referencedColumnName = "u_id")
+    @JoinColumn(name = "u_id")
     private Set<Client> clients;
 
     @OneToMany
-    @JoinColumn(name = "order_id", referencedColumnName = "o_id")
+    @JoinColumn(name = "o_id")
     private Set<Order> orders;
 
     @OneToMany
-    @JoinColumn(name = "restaurant_id", referencedColumnName = "r_id")
+    @JoinColumn(name = "r_id")
     private Set<Restaurant> restaurants;
 
 
