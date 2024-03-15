@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,8 +22,7 @@ import java.util.UUID;
 public class Manager {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "m_id")
     private UUID mId;
 
@@ -35,7 +36,7 @@ public class Manager {
     private LocalDateTime terminationDate;
 
     @OneToOne
-    @JoinColumn(name = "info_id", referencedColumnName = "info_id")
+    @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 
     @Override

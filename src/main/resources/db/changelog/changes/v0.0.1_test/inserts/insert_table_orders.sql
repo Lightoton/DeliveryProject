@@ -1,4 +1,4 @@
-INSERT INTO orders (o_id, status_order, final_amount, created_at, restaurant_id, client_id, support_manager,
+INSERT INTO orders (o_id, status_order, final_amount, created_at, restaurant_id, client_id, sm_id,
                     courier_id)
 VALUES (UUID_TO_BIN(UUID()), 'AWAITING_PAYMENT', 25.99, NOW(),
         (SELECT r_id FROM restaurants WHERE title = 'Green Leaf Cafe'),

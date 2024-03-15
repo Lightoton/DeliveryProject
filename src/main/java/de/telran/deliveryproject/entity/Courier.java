@@ -2,6 +2,7 @@ package de.telran.deliveryproject.entity;
 
 import de.telran.deliveryproject.entity.enums.Rating;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +25,7 @@ public class Courier {
     @Id
     @Column(name = "c_id")
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     private UUID cId;
 
     @Column(name = "salary")
@@ -44,7 +44,7 @@ public class Courier {
     private LocalDateTime terminationDate;
 
     @OneToOne
-    @JoinColumn(name = "info_id", referencedColumnName = "info_id")
+    @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 
     @Override
