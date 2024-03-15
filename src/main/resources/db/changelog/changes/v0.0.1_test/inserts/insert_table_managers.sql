@@ -1,4 +1,3 @@
-
 INSERT INTO managers (m_id, salary, hire_date, user_info_id)
 VALUES (UUID_TO_BIN(UUID()), 4000.00, '2023-01-15 08:00:00',
         (SELECT info_id FROM user_info WHERE username = 'mark')),

@@ -1,5 +1,3 @@
-
--- Вставка данных в таблицу roles
 INSERT INTO roles (role_id, role_name, updated_at)
 VALUES
     (UUID_TO_BIN(UUID()), 'Admin', NOW()),

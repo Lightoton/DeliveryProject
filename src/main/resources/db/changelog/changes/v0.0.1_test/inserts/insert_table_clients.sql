@@ -1,4 +1,3 @@
-
 INSERT INTO clients (u_id, date_of_birth, rating, address, registration_date, user_info_id)
 VALUES (UUID_TO_BIN(UUID()), '1990-01-01', 'STAR5', '123 Main Street', NOW(),
         (SELECT info_id FROM user_info WHERE username = 'alice')),

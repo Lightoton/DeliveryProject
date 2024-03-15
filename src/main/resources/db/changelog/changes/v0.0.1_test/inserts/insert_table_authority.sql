@@ -1,5 +1,3 @@
-
--- Вставка данных в таблицу authority
 INSERT INTO authority (auth_id, authority, updated_at)
 VALUES
     (UUID_TO_BIN(UUID()), 'Admin Access', NOW()),

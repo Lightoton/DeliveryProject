@@ -1,4 +1,3 @@
-
 INSERT INTO menu (menu_id, title, average_price, created_at, category_food_id)
 VALUES (UUID_TO_BIN(UUID()), 'Healthy Choices', 13.49, NOW(),
         (SELECT category_id FROM foods_category WHERE title = 'Salads')),

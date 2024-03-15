@@ -1,5 +1,9 @@
--- Вставка данных в таблицу role_authority
 INSERT INTO role_authority (role_id, authority_id)
-SELECT roles.role_id, authority.auth_id
-FROM roles
-         JOIN authority ON roles.role_name = SUBSTRING_INDEX(authority.authority, ' ', -1);
+values ((select role_id from roles where role_name = 'Admin'),
+        (select auth_id from authority where authority = 'Admin Access')),
+       ((select role_id from roles where role_name = 'User'),
+        (select auth_id from authority where authority = 'User access')),
+       ((select role_id from roles where role_name = 'Employee'),
+        (select auth_id from authority where authority = 'Employee Access')),
+       ((select role_id from roles where role_name = 'Manager'),
+        (select auth_id from authority where authority = 'Manager Access'));

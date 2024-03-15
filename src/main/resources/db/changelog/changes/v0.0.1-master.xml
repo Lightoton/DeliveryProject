@@ -2,10 +2,7 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-<!--    <include file="/db/changelog/changes/v0.0.1_test/drop_tables.sql"/>-->
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_foods.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_foods_category.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_menu.sql"/>
@@ -28,7 +25,7 @@
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_authority.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_roles.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_user_info.sql"/>
-<!--    <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_link_table_role_authority.sql"/>-->
+    <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_link_table_role_authority.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_link_table_user_role.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_clients.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_couriers.sql"/>
@@ -37,8 +34,5 @@
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_orders.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_departments.sql"/>
 
-<!--    <include file="db/changelog/changes/create_tables_changelog.sql"/>-->
-<!--    <include file="db/changelog/changes/insert_test_data_changelog_1.sql"/>-->
     <include file="db/changelog/changes/create_sequence.xml"/>
-<!--    <include file="db/changelog/changes/data.sql"/>-->
 </databaseChangeLog>

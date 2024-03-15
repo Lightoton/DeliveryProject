@@ -1,4 +1,3 @@
-
 INSERT INTO foods_category (category_id, title, food_id)
 VALUES (UUID_TO_BIN(UUID()), 'Salads', (SELECT f_id FROM foods WHERE title = 'Grilled Chicken Salad')),
        (UUID_TO_BIN(UUID()), 'Main Dishes', (SELECT f_id FROM foods WHERE title = 'Vegetable Stir Fry')),

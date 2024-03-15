@@ -1,5 +1,3 @@
-
-
 INSERT INTO foods (f_id, title, calorie, price, finishing_cooking_at, created_at)
 VALUES (UUID_TO_BIN(UUID()), 'Grilled Chicken Salad', '350 calories', 12.99, '2024-03-12 12:00:00', NOW()),
        (UUID_TO_BIN(UUID()), 'Vegetable Stir Fry', '250 calories', 9.99, '2024-03-12 12:30:00', NOW()),

@@ -1,5 +1,3 @@
-
--- Вставка данных в таблицу user_info
 INSERT INTO user_info (info_id, firstname, lastname, email, phone_number, username, password, updated_at)
 VALUES
     (UUID_TO_BIN(UUID()), 'Alice', 'Smith', 'alice@example.com', '111222333', 'alice', 'password789', NOW()),

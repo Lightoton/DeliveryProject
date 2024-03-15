@@ -1,4 +1,3 @@
-
 INSERT INTO restaurants (r_id, title, address, registration_date, menu_id)
 VALUES (UUID_TO_BIN(UUID()), 'Green Leaf Cafe', '123 Main Street, Cityville', NOW(),
         (SELECT menu_id FROM menu WHERE title = 'Healthy Choices')),

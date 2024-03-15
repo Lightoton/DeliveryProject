@@ -25,10 +25,10 @@ public class UserInfo {
     @Column(name = "info_id")
     private UUID infoId;
 
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstname;
 
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastname;
 
     @Column(name = "phone_number")
