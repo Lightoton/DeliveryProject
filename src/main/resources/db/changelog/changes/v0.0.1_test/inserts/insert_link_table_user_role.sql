@@ -1,4 +1,4 @@
-INSERT INTO user_roles (user_id, role_id)
+INSERT INTO user_roles (user_info_id, role_id)
 VALUES
     ((SELECT info_id FROM user_info WHERE username = 'alice'), (SELECT role_id FROM roles WHERE role_name = 'User')),
     ((SELECT info_id FROM user_info WHERE username = 'bob'), (SELECT role_id FROM roles WHERE role_name = 'User')),
