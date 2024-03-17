@@ -120,7 +120,7 @@ ___
 | 	id                   | binary(16)  | id key of row - unique, not null, primary key | 
 | 	title                | varchar(80) | food's title                                  | 
 | 	calorie              | varchar(80) | food's calorie                                | 
-| 	price                | double  | food's price                                     | 
+| 	price                | double      | food's price                                  | 
 | 	finishing_cooking_at | timestamp   | time when the food will be prepared           | 
 | 	created_at           | timestamp   | date the food was added to the menu           |
 
@@ -135,26 +135,37 @@ ___
 | phone_number | varchar(20) | user's phone number                           | 
 | username     | varchar(50) | user's username                               |
 | password     | varchar(32) | user's password                               |
-| role_id         | binary(16)  | user's roles                                  |
 | updated_at   | timestamp   | date of update of user information            |
 
 ### Table Role (User's roles)
 
 | Column name | Type        | Description                                   |
 |-------------|-------------|-----------------------------------------------|
-| 	id         | binary(16)  | id key of row - unique, not null, primary key | 
-| 	role_name  | varchar(80) | role's title                                  | 
-| 	authority_id  | binary(16)  | authority's id                                |
+| id          | binary(16)  | id key of row - unique, not null, primary key | 
+| role_name   | varchar(80) | role's title                                  |
 | updated_at  | timestamp   | date of update of role's information          |
 
 ### Table Authority (Role's authority)
 
 | Column name | Type        | Description                                   |
 |-------------|-------------|-----------------------------------------------|
-| 	id         | binary(16)  | id key of row - unique, not null, primary key | 
-| 	authority  | varchar(80) | name of authority                             | 
-| 	role_id       | binary(16)  | role id                                       |
+| id          | binary(16)  | id key of row - unique, not null, primary key | 
+| authority   | varchar(80) | name of authority                             |
 | updated_at  | timestamp   | date of update of authority's information     |
+
+### Link Table Role<->User_info
+
+| Column name  | Type       |
+|--------------|------------|
+| user_info_id | binary(16) |
+| role_id      | binary(16) |
+
+### Link Table Role<->Authority
+
+| Column name  | Type       |
+|--------------|------------|
+| role_id      | binary(16) |
+| authority_id | binary(16) |
 
 ### Enums Status Courier
 
