@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import de.telran.deliveryproject.entity.enums.Rating;
+import de.telran.deliveryproject.entity.enums.StatusCourier;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -31,10 +32,16 @@ public class Courier {
     @Column(name = "salary")
     private BigDecimal salary;
 
+    @Column(name = "status_courier")
+    @Enumerated(EnumType.STRING)
+    private StatusCourier statusCourier;
+
     @Column(name = "status_employee")
+    @Enumerated(EnumType.STRING)
     private StatusEmployee statusEmployee;
 
     @Column(name = "rating")
+    @Enumerated(EnumType.STRING)
     private Rating rating;
 
     @Column(name = "hire_date")
@@ -65,6 +72,7 @@ public class Courier {
         return "Courier{" +
                 "cId=" + cId +
                 ", salary=" + salary +
+                ", statusCourier=" + statusCourier +
                 ", statusEmployee=" + statusEmployee +
                 ", rating=" + rating +
                 ", hireDate=" + hireDate +

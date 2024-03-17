@@ -34,9 +34,8 @@ public class Client {
     @Column(name = "address")
     private String address;
 
-    @Enumerated
-
     @Column(name = "rating")
+    @Enumerated(EnumType.STRING)
     private Rating rating;
 
     @Column(name = "registration_date")

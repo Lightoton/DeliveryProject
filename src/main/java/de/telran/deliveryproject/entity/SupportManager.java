@@ -30,6 +30,7 @@ public class SupportManager {
     private BigDecimal salary;
 
     @Column(name = "status_employee")
+    @Enumerated(EnumType.STRING)
     private StatusEmployee statusEmployee;
 
     @Column(name = "hire_date")

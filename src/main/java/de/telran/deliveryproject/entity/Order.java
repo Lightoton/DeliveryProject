@@ -28,6 +28,7 @@ public class Order {
     private UUID id;
 
     @Column(name = "status_order")
+    @Enumerated(EnumType.STRING)
     private StatusOrder statusOrder;
 
     @Column(name = "final_amount")
