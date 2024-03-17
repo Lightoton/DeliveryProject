@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import de.telran.deliveryproject.entity.enums.StatusOrder;
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +23,7 @@ import java.util.UUID;
 public class Order {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "o_id")
     private UUID id;
 
@@ -42,17 +42,17 @@ public class Order {
     private Client client;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sup_manager_id", referencedColumnName = "sm_id")
+    @JoinColumn(name = "sm_id", referencedColumnName = "sm_id")
     private SupportManager supportManager;
 
     @OneToMany
-    @JoinColumn(name = "courier_id", referencedColumnName = "c_id")
+    @JoinColumn(name = "c_id")
     private Set<Courier> couriers;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "update_at")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Override

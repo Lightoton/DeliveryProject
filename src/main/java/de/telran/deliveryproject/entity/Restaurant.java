@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,8 +21,7 @@ import java.util.UUID;
 public class Restaurant {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "r_id")
     private UUID rId;
 
@@ -32,10 +32,10 @@ public class Restaurant {
     private String address;
 
     @OneToMany
-    @JoinColumn(name = "menu_id", referencedColumnName = "menu_id")
+    @JoinColumn(name = "menu_id")
     private Set<Menu> menu;
 
-    @Column(name = "created_at")
+    @Column(name = "registration_date")
     private LocalDateTime createdAt;
 
     @Override

@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import de.telran.deliveryproject.entity.enums.Rating;
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +25,7 @@ public class Client {
     @Id
     @Column(name = "u_id")
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     private UUID uId;
 
     @Column(name = "date_of_birth")
@@ -34,6 +34,8 @@ public class Client {
     @Column(name = "address")
     private String address;
 
+    @Enumerated
+
     @Column(name = "rating")
     private Rating rating;
 
@@ -41,7 +43,7 @@ public class Client {
     private LocalDateTime registrationDate;
 
     @OneToOne
-    @JoinColumn(name = "info_id", referencedColumnName = "info_id")
+    @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 
     @Override

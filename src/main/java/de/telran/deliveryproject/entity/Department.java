@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +21,9 @@ import java.util.UUID;
 @Table(name = "departments")
 public class Department {
     @Id
+    @Column(name = "d_id")
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     private UUID dId;
 
     @OneToOne
@@ -30,23 +31,23 @@ public class Department {
     private Manager manager;
 
     @OneToMany
-    @JoinColumn(name = "sup_manager_id", referencedColumnName = "sm_id")
+    @JoinColumn(name = "sm_id")
     private Set<SupportManager> supportManagers;
 
     @OneToMany
-    @JoinColumn(name = "courier_id", referencedColumnName = "c_id")
+    @JoinColumn(name = "c_id")
     private Set<Courier> couriers;
 
     @OneToMany
-    @JoinColumn(name = "client_id", referencedColumnName = "u_id")
+    @JoinColumn(name = "u_id")
     private Set<Client> clients;
 
     @OneToMany
-    @JoinColumn(name = "order_id", referencedColumnName = "o_id")
+    @JoinColumn(name = "o_id")
     private Set<Order> orders;
 
     @OneToMany
-    @JoinColumn(name = "restaurant_id", referencedColumnName = "r_id")
+    @JoinColumn(name = "r_id")
     private Set<Restaurant> restaurants;
 
 

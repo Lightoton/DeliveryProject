@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,12 +19,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "menus")
+@Table(name = "menu")
 public class Menu {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "menu_id")
     private UUID menuId;
 
@@ -34,7 +34,7 @@ public class Menu {
     private BigDecimal averagePrice;
 
     @OneToMany
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id")
     private Set<CategoryFood> categoryFoods;
 
 

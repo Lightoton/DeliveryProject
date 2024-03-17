@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,19 +17,18 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users_info")
+@Table(name = "user_info")
 public class UserInfo {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     @Column(name = "info_id")
     private UUID infoId;
 
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstname;
 
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastname;
 
     @Column(name = "phone_number")
@@ -44,8 +44,13 @@ public class UserInfo {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
+
 
     @Override
     public boolean equals(Object o) {

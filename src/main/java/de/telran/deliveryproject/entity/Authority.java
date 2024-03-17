@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,22 +14,25 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "authorities")
+@Table(name = "authority")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authority {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "de.telran.deliveryproject.generator.UuidTimeSequenceGenerator")
-    @Column(name = "id")
+    @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
+    @Column(name = "auth_id")
     private UUID id;
 
     @Column(name = "authority")
     private String authority;
 
-    @ManyToMany(mappedBy = "authorities")
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    @ManyToMany
+    @JoinTable(
+            name = "role_authority",
+            joinColumns = @JoinColumn(name = "authority_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
 }
