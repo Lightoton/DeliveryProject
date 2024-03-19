@@ -16,9 +16,7 @@ public class UuidTimeSequenceGenerator implements IdentifierGenerator {
         long currTimeMillis = System.currentTimeMillis();
         UUID uuid = UUID.randomUUID();
 
-        char[] uuidRaw = concatInHexFormat(currTimeMillis, uuid);
-
-        return UUID.fromString(formatUuidToString(uuidRaw));
+        return concatInHexFormat(currTimeMillis, uuid);
     }
 
     private char[] concatInHexFormat(long currTimeMillis, UUID uuid) {
@@ -29,21 +27,5 @@ public class UuidTimeSequenceGenerator implements IdentifierGenerator {
         String concatenated = millisHex + sequenceHex;
 
         return concatenated.toCharArray();
-    }
-
-    private String formatUuidToString(char[] uuid) {
-        for (int i = 0; i < uuid.length; i++) {
-            if (isDashPosition(i)) {
-                System.arraycopy(uuid, i, uuid, i + 1, uuid.length - 1 - i);
-                uuid[i] = '-';
-            } else if (uuid[i] == 0) {
-                uuid[i] = '0';
-            }
-        }
-        return new String(uuid);
-    }
-
-    private boolean isDashPosition(int pos) {
-        return pos == 8 || pos == 13 || pos == 18 || pos == 23;
     }
 }
