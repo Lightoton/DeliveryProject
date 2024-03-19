@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -12,32 +11,24 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UuidTimeSequenceGenerator implements IdentifierGenerator {
 
-    private static final String NEXT_VAL_QUERY = "SELECT nextval('seq_for_uuid_generator');";
-    private final JdbcTemplate jdbcTemplate;
-
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
         long currTimeMillis = System.currentTimeMillis();
-        long sequenceValue = getSequenceValue();
+        UUID uuid = UUID.randomUUID();
 
-        char[] uuidRaw = concatInHexFormat(currTimeMillis, sequenceValue);
+        char[] uuidRaw = concatInHexFormat(currTimeMillis, uuid);
 
         return UUID.fromString(formatUuidToString(uuidRaw));
     }
 
-    private Long getSequenceValue() {
-        return jdbcTemplate.queryForObject(NEXT_VAL_QUERY, (rs, rowNum) -> rs.getLong(1));
-    }
+    private char[] concatInHexFormat(long currTimeMillis, UUID uuid) {
+        String uuidStr = uuid.toString().replace("-", "");
+        String millisHex = Long.toHexString(currTimeMillis);
+        String sequenceHex = uuidStr.substring(0, 16);
 
-    private char[] concatInHexFormat(long currTimeMillis, long sequenceValue) {
-        char[] millisHex = Long.toHexString(currTimeMillis).toCharArray();
-        char[] seqHex = Long.toHexString(sequenceValue).toCharArray();
-        char[] concatenated = new char[36];
+        String concatenated = millisHex + sequenceHex;
 
-        System.arraycopy(millisHex, 0, concatenated, 0, millisHex.length);
-        System.arraycopy(seqHex, 0, concatenated, 16, seqHex.length);
-
-        return concatenated;
+        return concatenated.toCharArray();
     }
 
     private String formatUuidToString(char[] uuid) {
