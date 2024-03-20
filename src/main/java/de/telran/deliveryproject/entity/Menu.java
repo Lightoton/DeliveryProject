@@ -37,7 +37,6 @@ public class Menu {
     @JoinColumn(name = "category_id")
     private Set<CategoryFood> categoryFoods;
 
-
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

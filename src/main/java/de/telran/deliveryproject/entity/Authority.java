@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class Authority {
     private String authority;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "role_authority",
             joinColumns = @JoinColumn(name = "authority_id"),
