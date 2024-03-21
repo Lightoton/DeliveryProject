@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,12 +34,16 @@ public class Menu {
     @Column(name = "average_price")
     private BigDecimal averagePrice;
 
-    @OneToMany
-    @JoinColumn(name = "category_id")
+    @OneToMany(mappedBy = "menu")
     private Set<CategoryFood> categoryFoods;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    @JsonBackReference
+    private Restaurant restaurant;
 
     @Override
     public boolean equals(Object o) {

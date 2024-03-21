@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.telran.deliveryproject.entity.enums.Rating;
 import de.telran.deliveryproject.entity.enums.StatusCourier;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
@@ -53,6 +54,11 @@ public class Courier {
     @OneToOne
     @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    @JsonBackReference
+    private Order order;
 
     @Override
     public boolean equals(Object o) {

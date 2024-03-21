@@ -9,5 +9,8 @@ public class ErrorMessage {
     public static final String FOOD_NOT_FOUND = "Food not found";
     public static final String FOOD_CATEGORY_NOT_FOUND = "Food's category not found";
     public static final String RESTAURANT_NOT_FOUND = "Restaurant not found";
+    public static final String MENU_NOT_FOUND = "Menu not found";
+    public static final String ORDER_NOT_FOUND = "Order not found";
+
 
 }

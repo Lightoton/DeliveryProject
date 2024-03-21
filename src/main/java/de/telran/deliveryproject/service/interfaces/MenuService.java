@@ -4,5 +4,5 @@ import de.telran.deliveryproject.entity.Food;
 import de.telran.deliveryproject.entity.Menu;
 
 public interface MenuService {
-    Menu showAllMenuByRestaurantTitle(String restaurantTitle);
+    Menu showAllMenuById(String id);
 }

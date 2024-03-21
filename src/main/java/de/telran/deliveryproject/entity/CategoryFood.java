@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,9 +29,13 @@ public class CategoryFood {
     @Column(name = "title")
     private String title;
 
-    @OneToMany
-    @JoinColumn(name = "f_id")
+    @OneToMany(mappedBy = "categoryFood")
     private Set<Food> foods;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

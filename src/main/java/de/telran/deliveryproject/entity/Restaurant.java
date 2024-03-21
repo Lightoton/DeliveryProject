@@ -31,8 +31,7 @@ public class Restaurant {
     @Column(name = "address")
     private String address;
 
-    @OneToMany
-    @JoinColumn(name = "menu_id")
+    @OneToMany(mappedBy = "restaurant")
     private Set<Menu> menu;
 
     @Column(name = "registration_date")

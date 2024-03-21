@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.telran.deliveryproject.entity.enums.StatusOrder;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -43,11 +44,11 @@ public class Order {
     private Client client;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "sm_id", referencedColumnName = "sm_id")
     private SupportManager supportManager;
 
-    @OneToMany
-    @JoinColumn(name = "c_id")
+    @OneToMany(mappedBy = "order")
     private Set<Courier> couriers;
 
     @Column(name = "created_at")
