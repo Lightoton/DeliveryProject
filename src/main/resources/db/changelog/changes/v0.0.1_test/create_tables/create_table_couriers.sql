@@ -9,6 +9,8 @@ create table if not exists couriers
     termination_date timestamp,
     user_info_id     BINARY(16)  not null,
     order_id         BINARY(16),
+    department_id    BINARY(16),
     foreign key (user_info_id) references user_info (info_id),
-    foreign key (order_id) references orders (o_id)
+    foreign key (order_id) references orders (o_id),
+    foreign key (department_id) references departments (d_id)
 );

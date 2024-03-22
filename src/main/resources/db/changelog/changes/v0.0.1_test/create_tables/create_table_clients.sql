@@ -6,5 +6,7 @@ create table if not exists clients
     address           varchar(80) not null,
     registration_date timestamp   not null,
     user_info_id      BINARY(16)  not null,
-    foreign key (user_info_id) references user_info (info_id)
+    department_id     BINARY(16),
+    foreign key (user_info_id) references user_info (info_id),
+    foreign key (department_id) references departments (d_id)
 );

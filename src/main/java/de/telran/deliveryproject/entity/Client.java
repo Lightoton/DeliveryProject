@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.telran.deliveryproject.entity.enums.Rating;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -43,6 +44,12 @@ public class Client {
     @OneToOne
     @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
+
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    @JsonBackReference
+    private Department department;
 
     @Override
     public boolean equals(Object o) {

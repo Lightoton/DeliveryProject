@@ -60,6 +60,12 @@ public class Courier {
     @JsonBackReference
     private Order order;
 
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    @JsonBackReference
+    private Department department;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

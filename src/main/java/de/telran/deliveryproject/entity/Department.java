@@ -26,36 +26,30 @@ public class Department {
     @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
     private UUID dId;
 
-    @OneToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "m_id")
-    private Manager manager;
-
-    @OneToMany
-    @JoinColumn(name = "sm_id")
-    private Set<SupportManager> supportManagers;
-
-    @OneToMany
-    @JoinColumn(name = "c_id")
-    private Set<Courier> couriers;
-
-    @OneToMany
-    @JoinColumn(name = "u_id")
-    private Set<Client> clients;
-
-    @OneToMany
-    @JoinColumn(name = "o_id")
-    private Set<Order> orders;
-
-    @OneToMany
-    @JoinColumn(name = "r_id")
-    private Set<Restaurant> restaurants;
-
-
     @Column(name = "address")
     private String address;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @OneToOne
+    @JoinColumn(name = "manager_id", referencedColumnName = "m_id")
+    private Manager manager;
+
+    @OneToMany(mappedBy = "department")
+    private Set<SupportManager> supportManagers;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Courier> couriers;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Client> clients;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Order> orders;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Restaurant> restaurants;
 
     @Override
     public boolean equals(Object o) {

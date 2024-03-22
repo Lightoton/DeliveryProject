@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.telran.deliveryproject.entity.enums.StatusOrder;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
@@ -35,6 +36,12 @@ public class Order {
     @Column(name = "final_amount")
     private BigDecimal finalAmount;
 
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @OneToOne
     @JoinColumn(name = "restaurant_id", referencedColumnName = "r_id")
     private Restaurant restaurant;
@@ -43,19 +50,18 @@ public class Order {
     @JoinColumn(name = "client_id", referencedColumnName = "u_id")
     private Client client;
 
+    @OneToMany(mappedBy = "order")
+    private Set<Courier> couriers;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "sm_id", referencedColumnName = "sm_id")
     private SupportManager supportManager;
 
-    @OneToMany(mappedBy = "order")
-    private Set<Courier> couriers;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    @JsonBackReference
+    private Department department;
 
     @Override
     public boolean equals(Object o) {

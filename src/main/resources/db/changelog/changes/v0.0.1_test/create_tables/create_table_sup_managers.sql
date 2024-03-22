@@ -6,5 +6,7 @@ create table if not exists support_managers
     hire_date        timestamp   not null,
     termination_date timestamp,
     user_info_id     binary(16)  not null,
-    foreign key (user_info_id) references user_info (info_id)
+    department_id    BINARY(16),
+    foreign key (user_info_id) references user_info (info_id),
+    foreign key (department_id) references departments (d_id)
 );

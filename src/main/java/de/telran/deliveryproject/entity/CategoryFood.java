@@ -29,7 +29,7 @@ public class CategoryFood {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "categoryFood")
+    @OneToMany(mappedBy = "categoryFood",fetch = FetchType.LAZY)
     private Set<Food> foods;
 
     @ManyToOne(fetch = FetchType.EAGER)

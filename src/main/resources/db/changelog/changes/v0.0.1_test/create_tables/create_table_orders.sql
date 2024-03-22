@@ -8,7 +8,9 @@ create table if not exists orders
     restaurant_id BINARY(16)  not null,
     client_id     BINARY(16)  not null,
     sm_id         BINARY(16)  not null,
+    department_id BINARY(16)  not null,
     foreign key (restaurant_id) references restaurants (r_id),
     foreign key (client_id) references clients (u_id),
-    foreign key (sm_id) references support_managers (sm_id)
+    foreign key (sm_id) references support_managers (sm_id),
+    foreign key (department_id) references departments (d_id)
 );
