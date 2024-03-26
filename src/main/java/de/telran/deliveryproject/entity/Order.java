@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.telran.deliveryproject.entity.enums.StatusOrder;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
@@ -54,13 +55,13 @@ public class Order {
     private Set<Courier> couriers;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @JoinColumn(name = "sm_id", referencedColumnName = "sm_id")
     private SupportManager supportManager;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
-    @JsonBackReference
+    @JsonIgnore
     private Department department;
 
     @Override

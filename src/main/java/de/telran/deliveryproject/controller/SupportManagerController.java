@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SupportManagerController {
     private final SupportManagerService supportManagerService;
     @GetMapping("/show_support_manager/{supManagerId}")
-    private SupportManager showSupportManagerById(@PathVariable String supManagerId){
+    public SupportManager showSupportManagerById(@PathVariable String supManagerId){
         return supportManagerService.showSupportManager(supManagerId);
     }
 }

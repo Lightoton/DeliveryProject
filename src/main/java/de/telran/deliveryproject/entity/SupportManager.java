@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -46,7 +47,7 @@ public class SupportManager {
 
     @ManyToOne
     @JoinColumn(name = "department_id")
-    @JsonBackReference
+    @JsonIgnore
     private Department department;
 
     @Override

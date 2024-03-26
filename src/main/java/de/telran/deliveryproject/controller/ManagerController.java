@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ManagerController {
     private final ManagerService managerService;
     @GetMapping("/show_manager/{managerId}")
-    private Manager showManagerById(@PathVariable String managerId){
+    public Manager showManagerById(@PathVariable String managerId){
         return managerService.showManager(managerId);
     }
 }

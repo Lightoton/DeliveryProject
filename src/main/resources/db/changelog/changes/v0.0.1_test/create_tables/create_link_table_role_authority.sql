@@ -1,4 +1,4 @@
-CREATE TABLE role_authority
+CREATE TABLE if not exists role_authority
 (
     role_id      BINARY(16) NOT NULL,
     authority_id BINARY(16) NOT NULL,

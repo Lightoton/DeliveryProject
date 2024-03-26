@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.entity.enums.Rating;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -48,7 +49,7 @@ public class Client {
 
     @ManyToOne
     @JoinColumn(name = "department_id")
-    @JsonBackReference
+    @JsonIgnore
     private Department department;
 
     @Override
@@ -56,12 +57,12 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(uId, client.uId) && Objects.equals(dateOfBirth, client.dateOfBirth) && Objects.equals(address, client.address);
+        return Objects.equals(uId, client.uId) && Objects.equals(address, client.address) && rating == client.rating;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uId, dateOfBirth, address);
+        return Objects.hash(uId, address, rating);
     }
 
     @Override

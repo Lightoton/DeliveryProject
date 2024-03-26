@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class Food {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
-    @JsonBackReference
+    @JsonIgnore
     private CategoryFood categoryFood;
 
     @Column(name = "finishing_cooking_at")

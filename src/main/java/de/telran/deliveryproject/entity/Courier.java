@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.entity.enums.Rating;
 import de.telran.deliveryproject.entity.enums.StatusCourier;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
@@ -57,13 +58,13 @@ public class Courier {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
-    @JsonBackReference
+    @JsonIgnore
     private Order order;
 
 
     @ManyToOne
     @JoinColumn(name = "department_id")
-    @JsonBackReference
+    @JsonIgnore
     private Department department;
 
     @Override
@@ -71,12 +72,12 @@ public class Courier {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Courier courier = (Courier) o;
-        return Objects.equals(cId, courier.cId) && Objects.equals(salary, courier.salary);
+        return Objects.equals(cId, courier.cId) && Objects.equals(salary, courier.salary) && statusCourier == courier.statusCourier && statusEmployee == courier.statusEmployee && rating == courier.rating;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cId, salary);
+        return Objects.hash(cId, salary, statusCourier, statusEmployee, rating);
     }
 
     @Override

@@ -1,10 +1,16 @@
 spring:
+  profiles:
+    active: dev
   main:
     banner-mode: off
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: none
-
+  datasource:
+    url: jdbc:mysql://localhost:3306/delivery_db
+    username: root
+    password: YSE444esylightoton
+    driver-class-name: com.mysql.cj.jdbc.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
