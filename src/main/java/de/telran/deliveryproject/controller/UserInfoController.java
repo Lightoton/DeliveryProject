@@ -3,10 +3,7 @@ package de.telran.deliveryproject.controller;
 import de.telran.deliveryproject.entity.UserInfo;
 import de.telran.deliveryproject.service.interfaces.UserInfoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user_info")
@@ -16,5 +13,10 @@ public class UserInfoController {
     @GetMapping("/showUserInfo/{infoId}")
     public UserInfo showUserById(@PathVariable String infoId){
         return userInfoService.showUser(infoId);
+    }
+
+    @PostMapping("/create_user_info")
+    private UserInfo createUserInfo(@RequestBody UserInfo userInfo){
+        return userInfoService.creatUserInfo(userInfo);
     }
 }

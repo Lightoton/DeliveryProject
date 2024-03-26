@@ -22,4 +22,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfo showUser(String id) {
         return userInfoRepository.findById(UUID.fromString(id)).orElseThrow(() -> new UserInformationNotFoundException(ErrorMessage.USER_INFORMATION_NOT_FOUND));
     }
+
+    @Override
+    public UserInfo creatUserInfo(UserInfo userInfo) {
+        return userInfoRepository.saveAndFlush(userInfo);
+    }
 }
