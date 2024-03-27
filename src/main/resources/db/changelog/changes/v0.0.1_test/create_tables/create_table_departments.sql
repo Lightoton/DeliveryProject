@@ -6,4 +6,5 @@ create table if not exists departments
     updated_at         timestamp,
     manager_id         BINARY(16),
     foreign key (manager_id) references managers (m_id)
+        ON DELETE SET NULL
 );

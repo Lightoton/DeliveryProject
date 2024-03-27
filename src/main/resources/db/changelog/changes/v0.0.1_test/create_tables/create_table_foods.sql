@@ -5,7 +5,8 @@ create table if not exists foods
     calorie              double      not null,
     price                double      not null,
     finishing_cooking_at timestamp   not null,
-    created_at           timestamp   not null,
-    category_id          BINARY(16)  not null ,
+    created_at           timestamp   default NOW(),
+    category_id          BINARY(16)  ,
     foreign key (category_id) references foods_category (category_id)
+        ON DELETE SET NULL
 );
