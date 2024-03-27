@@ -96,9 +96,9 @@ class UserInfoControllerTest {
                 .andReturn().getResponse().getStatus());
 
 
-        Assertions.assertThrows(ServletException.class, () -> mockMvc
+        Assertions.assertEquals(404, mockMvc
                     .perform(MockMvcRequestBuilders.get("/user_info/showUserInfo/c80d54d3-500d-4539-9479-8e8961477193")
                             .contentType(MediaType.APPLICATION_JSON))
-                    .andReturn());
+                    .andReturn().getResponse().getStatus());
         }
     }
