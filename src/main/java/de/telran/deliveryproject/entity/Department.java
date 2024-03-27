@@ -35,22 +35,28 @@ public class Department {
     private LocalDateTime createdAt;
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "manager_id", referencedColumnName = "m_id")
     private Manager manager;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<SupportManager> supportManagers;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<Courier> couriers;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<Client> clients;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<Order> orders;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<Restaurant> restaurants;
 
     @Override
