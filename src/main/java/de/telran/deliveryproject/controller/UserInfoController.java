@@ -16,7 +16,12 @@ public class UserInfoController {
     }
 
     @PostMapping("/create_user_info")
-    private UserInfo createUserInfo(@RequestBody UserInfo userInfo){
+    public UserInfo createUserInfo(@RequestBody UserInfo userInfo){
         return userInfoService.creatUserInfo(userInfo);
     }
+    @DeleteMapping("/delete_user_info/{infoId}")
+    public void deleteUserInfoById(@PathVariable String infoId){
+        userInfoService.deleteUserInfo(infoId);
+    }
+
 }

@@ -6,10 +6,7 @@ import de.telran.deliveryproject.entity.Restaurant;
 import de.telran.deliveryproject.service.interfaces.ClientService;
 import de.telran.deliveryproject.service.interfaces.RestaurantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -21,5 +18,10 @@ public class RestaurantController {
     @GetMapping("/show_restaurant/{restaurantId}")
     public Restaurant showRestaurantById(@PathVariable String restaurantId){
         return restaurantService.showRestaurant(restaurantId);
+    }
+
+    @PostMapping("/add_restaurant_to_DB")
+    public Restaurant createRestaurant(@RequestBody Restaurant restaurant){
+        return restaurantService.createRestaurant(restaurant);
     }
 }

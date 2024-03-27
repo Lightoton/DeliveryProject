@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.telran.deliveryproject.entity.Food;
 import de.telran.deliveryproject.entity.Order;
 import de.telran.deliveryproject.entity.enums.StatusOrder;
+import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,22 @@ class OrderControllerTest {
         Order actual = objectMapper.readValue(orderResultJson, Order.class);
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
         Assertions.assertEquals(order,actual);
+    }
+
+    @Test
+    void deleteOrderById() throws Exception {
+        Assertions.assertEquals(200,mockMvc
+                .perform(MockMvcRequestBuilders.delete("/order/delete_order/32323231-3033-6566-2d62-3233622d3438")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse().getStatus());
+        Assertions.assertThrows(ServletException.class,()-> mockMvc
+                .perform(MockMvcRequestBuilders.get("/order/show_order/32323231-3033-6566-2d62-3233622d3438")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn());
+    }
+
+    @Test
+    void createOrder() {
+
     }
 }

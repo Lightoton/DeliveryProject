@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.UUID;
 
 @Service
@@ -27,4 +28,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfo creatUserInfo(UserInfo userInfo) {
         return userInfoRepository.saveAndFlush(userInfo);
     }
+
+    @Override
+    public void deleteUserInfo(String id) {
+        userInfoRepository.deleteById(UUID.fromString(id));
+    }
+
 }

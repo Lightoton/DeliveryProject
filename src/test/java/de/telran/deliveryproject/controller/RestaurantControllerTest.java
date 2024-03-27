@@ -2,6 +2,7 @@ package de.telran.deliveryproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.telran.deliveryproject.entity.Food;
+import de.telran.deliveryproject.entity.Manager;
 import de.telran.deliveryproject.entity.Restaurant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,5 +46,19 @@ class RestaurantControllerTest {
         Restaurant actual = objectMapper.readValue(restaurantResultJson, Restaurant.class);
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
         Assertions.assertEquals(restaurant,actual);
+    }
+
+    @Test
+    void createRestaurant() throws Exception {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setTitle("Test");
+        restaurant.setAddress("Test");
+        String restaurantWrite=objectMapper.writeValueAsString(restaurant);
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders.post("/restaurant/add_restaurant_to_DB")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(restaurantWrite))
+                .andReturn();
+        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
     }
 }

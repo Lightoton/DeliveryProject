@@ -41,7 +41,6 @@ public class Restaurant {
 
     @ManyToOne
     @JoinColumn(name = "department_id")
-    @JsonIgnore
     private Department department;
     @Override
     public boolean equals(Object o) {

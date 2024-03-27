@@ -5,4 +5,5 @@ import de.telran.deliveryproject.entity.Menu;
 
 public interface MenuService {
     Menu showAllMenuById(String id);
+
 }

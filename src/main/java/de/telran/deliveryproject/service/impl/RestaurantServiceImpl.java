@@ -22,4 +22,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantRepository.findById(UUID.fromString(id)).orElseThrow(() -> new RestaurantNotFoundException(ErrorMessage.RESTAURANT_NOT_FOUND));
     }
 
+    @Override
+    public Restaurant createRestaurant(Restaurant restaurant) {
+
+        return restaurantRepository.saveAndFlush(restaurant);
+    }
+
 }
