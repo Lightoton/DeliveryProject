@@ -2,7 +2,9 @@ package de.telran.deliveryproject.controller;
 
 import de.telran.deliveryproject.entity.Courier;
 import de.telran.deliveryproject.service.interfaces.CourierService;
+import de.telran.deliveryproject.validation.annotation.UuidChecker;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,13 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
+@Validated
 @RestController
 @RequestMapping("/courier")
 @RequiredArgsConstructor
 public class CourierController {
     private final CourierService courierService;
     @GetMapping("/show_courier/{courierId}")
-    public Courier showCourierById(@PathVariable String courierId){
+    public Courier showCourierById(@UuidChecker @PathVariable String courierId){
         return courierService.showCourier(courierId);
     }
     @GetMapping("/show_courier_by_name/{courierName}")
