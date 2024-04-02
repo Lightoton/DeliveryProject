@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -27,6 +26,7 @@ class FoodCategoryControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
     void showFoodCategoryById() throws Exception {
         CategoryFood categoryFood = new CategoryFood();
@@ -34,7 +34,8 @@ class FoodCategoryControllerTest {
         categoryFood.setTitle("Salads");
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/food_category/show_food_category/35396330-3466-6237-2d32-3138322d3431")
+                .perform(MockMvcRequestBuilders
+                        .get("/food_category/show_food_category/35396330-3466-6237-2d32-3138322d3431")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -43,6 +44,6 @@ class FoodCategoryControllerTest {
         CategoryFood actual = objectMapper.readValue(foodCategoryResultJson, CategoryFood.class);
 
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(categoryFood,actual);
+        Assertions.assertEquals(categoryFood, actual);
     }
 }

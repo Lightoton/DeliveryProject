@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.UUID;
 
 @Service
@@ -21,7 +20,8 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     @Transactional
     public UserInfo showUser(String id) {
-        return userInfoRepository.findById(UUID.fromString(id)).orElseThrow(() -> new UserInformationNotFoundException(ErrorMessage.USER_INFORMATION_NOT_FOUND));
+        return userInfoRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new UserInformationNotFoundException(ErrorMessage.USER_INFORMATION_NOT_FOUND));
     }
 
     @Override

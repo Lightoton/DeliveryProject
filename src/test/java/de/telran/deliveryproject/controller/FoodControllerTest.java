@@ -14,12 +14,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -31,6 +29,7 @@ class FoodControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
     void showFoodById() throws Exception {
         Food food = new Food();
@@ -40,7 +39,8 @@ class FoodControllerTest {
         food.setTitle("Grilled Chicken Salad");
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/food/show_food/63623962-6466-3665-2d33-3438382d3434")
+                .perform(MockMvcRequestBuilders
+                        .get("/food/show_food/63623962-6466-3665-2d33-3438382d3434")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -48,12 +48,12 @@ class FoodControllerTest {
 
         Food actual = objectMapper.readValue(foodResultJson, Food.class);
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(food,actual);
+        Assertions.assertEquals(food, actual);
     }
 
     @Test
     void showAllFoodsByMenuId() throws Exception {
-        List<Food> foods = Arrays.asList(new Food(),new Food());
+        List<Food> foods = Arrays.asList(new Food(), new Food());
 
         MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders.get("/food/show_foods_by_menu/38616361-3138-3434-2d61-3261312d3466")
@@ -61,8 +61,8 @@ class FoodControllerTest {
                 .andReturn();
 
         String foodsResultJson = mvcResult.getResponse().getContentAsString();
-        Food[] actual = objectMapper.readValue(foodsResultJson,Food[].class);
-        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(foods.size(),actual.length);
+        Food[] actual = objectMapper.readValue(foodsResultJson, Food[].class);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(foods.size(), actual.length);
     }
 }

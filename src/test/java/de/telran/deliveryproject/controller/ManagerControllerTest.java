@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -28,6 +27,7 @@ class ManagerControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
     void showManagerById() throws Exception {
         Manager manager = new Manager();
@@ -36,7 +36,8 @@ class ManagerControllerTest {
 
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/manager/show_manager/66393734-3665-3734-2d33-3731322d3439")
+                .perform(MockMvcRequestBuilders
+                        .get("/manager/show_manager/66393734-3665-3734-2d33-3731322d3439")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -45,6 +46,6 @@ class ManagerControllerTest {
         Manager actual = objectMapper.readValue(managerResultJson, Manager.class);
 
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(manager,actual);
+        Assertions.assertEquals(manager, actual);
     }
 }

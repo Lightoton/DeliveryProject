@@ -14,8 +14,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SupportManagerServiceImpl implements SupportManagerService {
     private final SupportManagerRepository supportManagerRepository;
+
     @Override
     public SupportManager showSupportManager(String id) {
-        return supportManagerRepository.findById(UUID.fromString(id)).orElseThrow(()-> new SupportManagerNotFoundException(ErrorMessage.SUPPORT_MANAGER_NOT_FOUND));
+        return supportManagerRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new SupportManagerNotFoundException(ErrorMessage.SUPPORT_MANAGER_NOT_FOUND));
     }
 }

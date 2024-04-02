@@ -11,60 +11,61 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "restaurants")
-public class Restaurant {
+@Table(name = "order_details")
+public class OrderDetails {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", type = UuidTimeSequenceGenerator.class)
-    @Column(name = "r_id")
-    private UUID rId;
+    @Column(name = "order_d_id")
+    private UUID orderDId;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "quantity_foods")
+    private int quantity;
 
-    @Column(name = "address")
-    private String address;
-
-    @OneToMany(mappedBy = "restaurant")
-    @JsonIgnore
-    private Set<Menu> menu;
-
-    @Column(name = "registration_date")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    @JoinColumn(name = "order_id")
+    @JsonIgnore
+    private Order order;
+
+    @OneToOne
+    @JoinColumn(name = "food_id")
+    private Food food;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Restaurant that = (Restaurant) o;
-        return Objects.equals(rId, that.rId) && Objects.equals(title, that.title) && Objects.equals(address, that.address);
+        OrderDetails that = (OrderDetails) o;
+        return quantity == that.quantity && Objects.equals(orderDId, that.orderDId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rId, title, address);
+        return Objects.hash(orderDId, quantity);
     }
 
     @Override
     public String toString() {
-        return "Restaurant{" +
-                "rId=" + rId +
-                ", title='" + title + '\'' +
-                ", address='" + address + '\'' +
-                ", menu=" + menu +
+        return "OrderDetails{" +
+                "orderDId=" + orderDId +
+                ", quantity=" + quantity +
                 ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", order=" + order +
+                ", food=" + food +
                 '}';
     }
 }

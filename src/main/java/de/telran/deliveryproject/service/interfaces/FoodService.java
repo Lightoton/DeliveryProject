@@ -6,5 +6,6 @@ import java.util.Set;
 
 public interface FoodService {
     Food showFood(String id);
+
     Set<Food> showAllFoodsByMenuId(String id);
 }

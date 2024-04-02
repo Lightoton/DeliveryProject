@@ -1,7 +1,6 @@
 package de.telran.deliveryproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.telran.deliveryproject.entity.Food;
 import de.telran.deliveryproject.entity.Order;
 import de.telran.deliveryproject.entity.enums.StatusOrder;
 import jakarta.servlet.ServletException;
@@ -18,8 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -39,7 +36,8 @@ class OrderControllerTest {
         order.setFinalAmount(BigDecimal.valueOf(25.99));
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/order/show_order/32323231-3033-6566-2d62-3233622d3438")
+                .perform(MockMvcRequestBuilders
+                        .get("/order/show_order/32323231-3033-6566-2d62-3233622d3438")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 

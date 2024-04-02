@@ -1,7 +1,6 @@
 package de.telran.deliveryproject.service.impl;
 
 import de.telran.deliveryproject.entity.Food;
-import de.telran.deliveryproject.exception.ClientNotFoundException;
 import de.telran.deliveryproject.exception.FoodNotFoundException;
 import de.telran.deliveryproject.exception.errorMessege.ErrorMessage;
 import de.telran.deliveryproject.repository.FoodRepository;
@@ -16,9 +15,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FoodServiceImpl implements FoodService {
     private final FoodRepository foodRepository;
+
     @Override
     public Food showFood(String id) {
-        return foodRepository.findById(UUID.fromString(id)).orElseThrow(()-> new FoodNotFoundException(ErrorMessage.FOOD_NOT_FOUND));
+        return foodRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new FoodNotFoundException(ErrorMessage.FOOD_NOT_FOUND));
     }
 
     @Override

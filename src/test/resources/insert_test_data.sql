@@ -1,4 +1,3 @@
--- DELETE FROM user_info WHERE info_id = X'c80d54d3500d453994798e8961477193';
 INSERT INTO user_info (info_id, firstname, lastname, email, phone_number, username, password, updated_at)
 VALUES (X'c80d54d3500d453994798e8961477193', 'Alice', 'Smith', 'alice@example.com', '111222333', 'alice', 'password789', CURRENT_TIMESTAMP),
         (CAST(UUID() as binary(16)), 'Bob', 'Johnson', 'bob@example.com', '444555666', 'bob', 'passwordabc',
@@ -185,6 +184,10 @@ VALUES (CAST('222103ef-b23b-48f5-85e2-07517c2f0fbf'as binary(16)), 'AWAITING_PAY
          FROM support_managers
          WHERE user_info_id = (SELECT info_id FROM user_info WHERE USERNAME = 'rachel')),
         (select d_id from departments where departments.address = '123 Main Street'));
+
+INSERT INTO order_details (order_d_id, quantity_foods, order_id, food_id)
+VALUES (UUID(),5,(select o_id from orders where status_order = 'AWAITING_PAYMENT'),(select f_id from foods where title = 'Grilled Chicken Salad')),
+       (uuid(),2,(select o_id from orders where status_order = 'AWAITING_PAYMENT'),(select f_id from foods where title = 'Vegetarian Salad'));
 
 INSERT INTO couriers (c_id, rating, status_courier, salary, status_employee, hire_date, user_info_id, order_id,
                       department_id)

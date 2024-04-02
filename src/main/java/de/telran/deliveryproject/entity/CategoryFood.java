@@ -1,6 +1,5 @@
 package de.telran.deliveryproject.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,7 +30,7 @@ public class CategoryFood {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "categoryFood",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "categoryFood", fetch = FetchType.LAZY)
     private Set<Food> foods;
 
     @ManyToOne(fetch = FetchType.EAGER)

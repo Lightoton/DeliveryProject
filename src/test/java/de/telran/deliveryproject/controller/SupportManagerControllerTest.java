@@ -1,7 +1,6 @@
 package de.telran.deliveryproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.telran.deliveryproject.entity.Food;
 import de.telran.deliveryproject.entity.SupportManager;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
 import org.junit.jupiter.api.Assertions;
@@ -17,8 +16,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,7 +37,8 @@ class SupportManagerControllerTest {
         manager.setStatusEmployee(StatusEmployee.WORK);
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/support_manager/show_support_manager/66663837-6335-3235-2d35-6432322d3438")
+                .perform(MockMvcRequestBuilders
+                        .get("/support_manager/show_support_manager/66663837-6335-3235-2d35-6432322d3438")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 

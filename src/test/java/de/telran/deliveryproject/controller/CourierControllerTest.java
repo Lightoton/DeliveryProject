@@ -17,9 +17,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -35,22 +36,23 @@ class CourierControllerTest {
 
     @Test
     void showCourierById() throws Exception {
-         Courier expected = new Courier();
-         expected.setCId(UUID.fromString("32383661-6264-3439-2d61-3835622d3466"));
-         expected.setStatusCourier(StatusCourier.FREE);
-         expected.setRating(Rating.STAR7);
-         expected.setSalary(BigDecimal.valueOf(2500.0));
-         expected.setStatusEmployee(StatusEmployee.WORK);
+        Courier expected = new Courier();
+        expected.setCId(UUID.fromString("32383661-6264-3439-2d61-3835622d3466"));
+        expected.setStatusCourier(StatusCourier.FREE);
+        expected.setRating(Rating.STAR7);
+        expected.setSalary(BigDecimal.valueOf(2500.0));
+        expected.setStatusEmployee(StatusEmployee.WORK);
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/courier/show_courier/32383661-6264-3439-2d61-3835622d3466")
+                .perform(MockMvcRequestBuilders
+                        .get("/courier/show_courier/32383661-6264-3439-2d61-3835622d3466")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
         String courierResultJson = mvcResult.getResponse().getContentAsString();
         Courier actual = objectMapper.readValue(courierResultJson, Courier.class);
-        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -69,8 +71,8 @@ class CourierControllerTest {
 
         String courierResultJson = mvcResult.getResponse().getContentAsString();
         Courier actual = objectMapper.readValue(courierResultJson, Courier.class);
-        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -90,7 +92,7 @@ class CourierControllerTest {
         Courier[] actual = objectMapper.readValue(courierResultJson, Courier[].class);
 
 
-        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(couriers.size(),actual.length);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(couriers.size(), actual.length);
     }
 }

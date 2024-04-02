@@ -18,16 +18,22 @@ public class CourierServiceImpl implements CourierService {
 
     @Override
     public Courier showCourier(String id) {
-        return courierRepository.findById(UUID.fromString(id)).orElseThrow(() -> new CourierNotFoundException(ErrorMessage.COURIER_NOT_FOUND));
+        return courierRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new CourierNotFoundException(ErrorMessage.COURIER_NOT_FOUND));
     }
 
     @Override
     public Courier showCourierByName(String name) {
-        return courierRepository.findByFirstName(name).orElseThrow(() -> new CourierNotFoundException(ErrorMessage.COURIER_NOT_FOUND));
+        return courierRepository.findByFirstName(name)
+                .orElseThrow(() -> new CourierNotFoundException(ErrorMessage.COURIER_NOT_FOUND));
     }
 
     @Override
     public Set<Courier> showFreeCouriers() {
-        return courierRepository.findFreeCouriers();
+        Set<Courier> couriers = courierRepository.findFreeCouriers();
+        if (couriers.isEmpty()) {
+            throw new CourierNotFoundException(ErrorMessage.COURIER_WITH_CONDITION_NOT_FOUND);
+        } else return courierRepository.findFreeCouriers();
+
     }
 }

@@ -1,6 +1,5 @@
 package de.telran.deliveryproject.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telran.deliveryproject.entity.enums.StatusEmployee;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
@@ -15,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor

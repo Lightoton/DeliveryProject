@@ -14,8 +14,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ManagerServiceImpl implements ManagerService {
     private final ManagerRepository managerRepository;
+
     @Override
     public Manager showManager(String id) {
-        return managerRepository.findById(UUID.fromString(id)).orElseThrow(()-> new ManagerNotFoundException(ErrorMessage.MANAGER_NOT_FOUND));
+        return managerRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ManagerNotFoundException(ErrorMessage.MANAGER_NOT_FOUND));
     }
 }

@@ -1,22 +1,24 @@
 package de.telran.deliveryproject.controller;
 
-import de.telran.deliveryproject.entity.Manager;
 import de.telran.deliveryproject.entity.SupportManager;
-import de.telran.deliveryproject.service.interfaces.ManagerService;
 import de.telran.deliveryproject.service.interfaces.SupportManagerService;
+import de.telran.deliveryproject.validation.annotation.UuidChecker;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Validated
 @RestController
 @RequestMapping("/support_manager")
 @RequiredArgsConstructor
 public class SupportManagerController {
     private final SupportManagerService supportManagerService;
+
     @GetMapping("/show_support_manager/{supManagerId}")
-    public SupportManager showSupportManagerById(@PathVariable String supManagerId){
+    public SupportManager showSupportManagerById(@UuidChecker @PathVariable String supManagerId) {
         return supportManagerService.showSupportManager(supManagerId);
     }
 }

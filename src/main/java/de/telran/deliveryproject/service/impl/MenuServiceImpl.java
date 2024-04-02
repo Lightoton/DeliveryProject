@@ -14,8 +14,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService {
     private final MenuRepository menuRepository;
+
     @Override
     public Menu showAllMenuById(String id) {
-        return menuRepository.findById(UUID.fromString(id)).orElseThrow(() -> new MenuNotFoundException(ErrorMessage.MENU_NOT_FOUND));
+        return menuRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new MenuNotFoundException(ErrorMessage.MENU_NOT_FOUND));
     }
 }

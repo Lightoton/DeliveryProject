@@ -4,6 +4,8 @@ import de.telran.deliveryproject.entity.UserInfo;
 
 public interface UserInfoService {
     UserInfo showUser(String id);
+
     UserInfo creatUserInfo(UserInfo userInfo);
+
     void deleteUserInfo(String id);
 }

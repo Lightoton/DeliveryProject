@@ -1,7 +1,6 @@
 package de.telran.deliveryproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.telran.deliveryproject.entity.Food;
 import de.telran.deliveryproject.entity.Menu;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -29,6 +27,7 @@ class MenuControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
     void showMenuById() throws Exception {
         Menu menu = new Menu();
@@ -37,7 +36,8 @@ class MenuControllerTest {
         menu.setAveragePrice(BigDecimal.valueOf(13.49));
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/menu/show_menu_by_id/38616361-3138-3434-2d61-3261312d3466")
+                .perform(MockMvcRequestBuilders
+                        .get("/menu/show_menu_by_id/38616361-3138-3434-2d61-3261312d3466")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -45,6 +45,6 @@ class MenuControllerTest {
 
         Menu actual = objectMapper.readValue(menuResultJson, Menu.class);
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(menu,actual);
+        Assertions.assertEquals(menu, actual);
     }
 }

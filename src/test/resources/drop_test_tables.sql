@@ -6,6 +6,8 @@ drop table if exists FOODS_CATEGORY cascade;
 
 drop table if exists MENU cascade;
 
+drop table if exists order_details cascade;
+
 drop table if exists ORDERS cascade;
 
 drop table if exists CLIENTS cascade;

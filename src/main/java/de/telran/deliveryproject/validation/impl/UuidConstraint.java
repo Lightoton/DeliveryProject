@@ -6,7 +6,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Optional;
 
-public class UuidConstraint implements ConstraintValidator<UuidChecker,String> {
+public class UuidConstraint implements ConstraintValidator<UuidChecker, String> {
     private static final String UUID = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
 
     @Override
@@ -17,7 +17,7 @@ public class UuidConstraint implements ConstraintValidator<UuidChecker,String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         return Optional.ofNullable(value)
-                .filter(el->!el.isBlank())
+                .filter(el -> !el.isBlank())
                 .map(el -> el.matches(UUID))
                 .orElse(false);
     }

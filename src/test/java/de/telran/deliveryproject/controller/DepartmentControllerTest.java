@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -27,19 +26,21 @@ class DepartmentControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
     void showDepartmentById() throws Exception {
         Department department = new Department();
         department.setDId(UUID.fromString("62363334-6261-3130-2d33-3436362d3437"));
         department.setAddress("123 Main Street");
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/department/show_department/62363334-6261-3130-2d33-3436362d3437")
+                .perform(MockMvcRequestBuilders
+                        .get("/department/show_department/62363334-6261-3130-2d33-3436362d3437")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         String departmentResultJson = mvcResult.getResponse().getContentAsString();
 
         Department actual = objectMapper.readValue(departmentResultJson, Department.class);
-        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(department,actual);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(department, actual);
     }
 }

@@ -14,8 +14,21 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
+
     @Override
     public Client showClient(String id) {
-        return clientRepository.findById(UUID.fromString(id)).orElseThrow(()-> new ClientNotFoundException(ErrorMessage.CLIENT_NOT_FOUND));
+        return clientRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ClientNotFoundException(ErrorMessage.CLIENT_NOT_FOUND));
     }
+
+    @Override
+    public Client updateClientById(String id, Client client) {
+        Client updateClient = clientRepository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ClientNotFoundException(ErrorMessage.CLIENT_NOT_FOUND));
+        updateClient.setAddress(client.getAddress());
+        updateClient.setRating(client.getRating());
+        return clientRepository.saveAndFlush(updateClient);
+    }
+
+
 }

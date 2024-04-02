@@ -17,6 +17,7 @@
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_clients.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_sup_managers.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_orders.sql"/>
+    <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_order_details.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/create_tables/create_table_couriers.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_user_info.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_managers.sql"/>
@@ -32,6 +33,7 @@
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_clients.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_sup_managers.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_orders.sql"/>
+    <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_order_details.sql"/>
     <include file="/db/changelog/changes/v0.0.1_test/inserts/insert_table_couriers.sql"/>
 
 

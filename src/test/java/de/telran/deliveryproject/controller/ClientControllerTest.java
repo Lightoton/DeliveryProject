@@ -14,12 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Sql("/drop_test_tables.sql")
@@ -31,6 +27,7 @@ class ClientControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Test
     void showClientById() throws Exception {
         Client expected = new Client();
@@ -39,15 +36,16 @@ class ClientControllerTest {
         expected.setAddress("123 Main Street");
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/client/show_client/62656630-3736-6434-2d39-6135342d3439")
+                .perform(MockMvcRequestBuilders
+                        .get("/client/show_client/62656630-3736-6434-2d39-6135342d3439")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
         String clientResultJson = mvcResult.getResponse().getContentAsString();
 
         Client actual = objectMapper.readValue(clientResultJson, Client.class);
-        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(expected, actual);
 
 
     }

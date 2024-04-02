@@ -2,10 +2,7 @@ package de.telran.deliveryproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.telran.deliveryproject.entity.UserInfo;
-import de.telran.deliveryproject.exception.UserInformationNotFoundException;
-import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,11 +14,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.UUID;
-
-import static org.hamcrest.Matchers.is;
-
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -48,7 +40,8 @@ class UserInfoControllerTest {
         expected.setPassword("password789");
 
         MvcResult mvcResult = mockMvc
-                .perform(MockMvcRequestBuilders.get("/user_info/showUserInfo/c80d54d3-500d-4539-9479-8e8961477193")
+                .perform(MockMvcRequestBuilders
+                        .get("/user_info/showUserInfo/c80d54d3-500d-4539-9479-8e8961477193")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
 
@@ -91,13 +84,15 @@ class UserInfoControllerTest {
     @Test
     void deleteUserInfoById() throws Exception {
         Assertions.assertEquals(200,mockMvc
-                .perform(MockMvcRequestBuilders.delete("/user_info/delete_user_info/c80d54d3-500d-4539-9479-8e8961477193")
+                .perform(MockMvcRequestBuilders
+                        .delete("/user_info/delete_user_info/c80d54d3-500d-4539-9479-8e8961477193")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse().getStatus());
 
 
         Assertions.assertEquals(404, mockMvc
-                    .perform(MockMvcRequestBuilders.get("/user_info/showUserInfo/c80d54d3-500d-4539-9479-8e8961477193")
+                    .perform(MockMvcRequestBuilders
+                            .get("/user_info/showUserInfo/c80d54d3-500d-4539-9479-8e8961477193")
                             .contentType(MediaType.APPLICATION_JSON))
                     .andReturn().getResponse().getStatus());
         }

@@ -1,8 +1,6 @@
 package de.telran.deliveryproject.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import de.telran.deliveryproject.entity.enums.StatusOrder;
 import de.telran.deliveryproject.generator.UuidTimeSequenceGenerator;
 import jakarta.persistence.*;
@@ -17,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -46,6 +45,9 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "restaurant_id", referencedColumnName = "r_id")
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "order")
+    private Set<OrderDetails> orderDetails;
 
     @OneToOne
     @JoinColumn(name = "client_id", referencedColumnName = "u_id")
