@@ -31,7 +31,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CourierNotFoundException.class)
     public ResponseEntity<ErrorExtension> handleCourierNotFoundException(Exception e) {
         return new ResponseEntity<>(new ErrorExtension(
-                e.getMessage(), HttpStatus.BAD_REQUEST),
+                e.getMessage(), HttpStatus.NOT_FOUND),
                 HttpStatus.NOT_FOUND);
 
     }
