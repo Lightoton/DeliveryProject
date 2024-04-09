@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 @RestControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserInformationNotFoundException.class)
@@ -33,6 +35,13 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ErrorExtension(
                 e.getMessage(), HttpStatus.NOT_FOUND),
                 HttpStatus.NOT_FOUND);
+
+    }
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public ResponseEntity<ErrorExtension> handleUserInfoDuplicateException(Exception e) {
+        return new ResponseEntity<>(new ErrorExtension(
+                e.getMessage(), HttpStatus.CONFLICT),
+                HttpStatus.CONFLICT);
 
     }
 
