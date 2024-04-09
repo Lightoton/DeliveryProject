@@ -17,7 +17,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserInformationNotFoundException.class)
     public ResponseEntity<ErrorExtension> handleUserInfoNotFoundException(Exception e) {
         return new ResponseEntity<>(new ErrorExtension(
-                e.getMessage(), HttpStatus.BAD_REQUEST),
+                e.getMessage(), HttpStatus.NOT_FOUND),
                 HttpStatus.NOT_FOUND);
 
     }
