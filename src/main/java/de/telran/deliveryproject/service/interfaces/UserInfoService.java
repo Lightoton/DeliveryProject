@@ -8,4 +8,5 @@ public interface UserInfoService {
     UserInfo creatUserInfo(UserInfo userInfo);
 
     void deleteUserInfo(String id);
+
 }

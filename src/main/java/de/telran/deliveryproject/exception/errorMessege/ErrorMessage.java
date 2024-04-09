@@ -2,6 +2,7 @@ package de.telran.deliveryproject.exception.errorMessege;
 
 public class ErrorMessage {
     public static final String USER_INFORMATION_NOT_FOUND = "User info not found";
+    public static final String USER_INFORMATION_IS_EXIST = "User info already exists in the database with the same email";
     public static final String CLIENT_NOT_FOUND = "Client not found";
     public static final String COURIER_NOT_FOUND = "Courier not found";
     public static final String COURIER_WITH_CONDITION_NOT_FOUND = "Courier with this condition not found";

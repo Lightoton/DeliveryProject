@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.service.impl;
 
 import de.telran.deliveryproject.entity.UserInfo;
+import de.telran.deliveryproject.exception.UserInformationIsExistException;
 import de.telran.deliveryproject.exception.UserInformationNotFoundException;
 import de.telran.deliveryproject.exception.errorMessege.ErrorMessage;
 import de.telran.deliveryproject.repository.UserInfoRepository;
@@ -26,7 +27,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserInfo creatUserInfo(UserInfo userInfo) {
-        return userInfoRepository.saveAndFlush(userInfo);
+        if (userInfoRepository.findByEmail(userInfo.getEmail()) != null){
+            throw new UserInformationIsExistException(ErrorMessage.USER_INFORMATION_IS_EXIST);
+        }else return userInfoRepository.saveAndFlush(userInfo);
     }
 
     @Override
