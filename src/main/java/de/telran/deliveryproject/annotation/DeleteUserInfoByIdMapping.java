@@ -14,22 +14,18 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@RequestMapping(method = RequestMethod.GET)
-@Operation(summary = "Receiving user information by ID information.",
-        description = "As a response, we receive data presented in JSON format and containing information" +
-                "about the user. The object contains the first name, last name, phone number," +
-                "email address, username (login) and password. In addition," +
-                "the user has one role, with corresponding access to resources. ",
+@RequestMapping(method = RequestMethod.DELETE)
+@Operation(summary = "Deleting information about the user, indicating the ID.",
+        description = "Safely deletes a user under the specified ID",
         responses = {
-                @ApiResponse(responseCode = "200", description = "found"),
-                @ApiResponse(responseCode = "404", description = "not found")
+                @ApiResponse(responseCode = "200", description = "OK"),
         },
         security = {
                 @SecurityRequirement(name = "safety requirements")
         },
         hidden = false
 )
-public @interface CustomGetUserInfoById {
+public @interface DeleteUserInfoByIdMapping {
     @AliasFor(annotation = RequestMapping.class, attribute = "path")
     String[] path() default {};
 }

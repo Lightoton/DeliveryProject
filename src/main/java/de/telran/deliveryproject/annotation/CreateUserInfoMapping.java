@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
         },
         hidden = false
 )
-public @interface CustomCreateUserInfo {
+public @interface CreateUserInfoMapping {
     @AliasFor(annotation = RequestMapping.class, attribute = "path")
     String[] path() default {};
 }

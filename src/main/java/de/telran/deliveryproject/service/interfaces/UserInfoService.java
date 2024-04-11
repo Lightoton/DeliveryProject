@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.service.interfaces;
 
+import de.telran.deliveryproject.dto.UserInfoDto;
 import de.telran.deliveryproject.entity.UserInfo;
 
 public interface UserInfoService {
@@ -9,4 +10,7 @@ public interface UserInfoService {
 
     void deleteUserInfo(String id);
 
+    UserInfoDto getUserInfoDto(String id);
+
+    UserInfoDto updateUserInfoDtoById(String id, UserInfoDto userInfoDto);
 }

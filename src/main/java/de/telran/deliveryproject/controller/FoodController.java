@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.controller;
 
+import de.telran.deliveryproject.dto.FoodDto;
 import de.telran.deliveryproject.entity.Food;
 import de.telran.deliveryproject.service.interfaces.FoodService;
 import de.telran.deliveryproject.validation.annotation.UuidChecker;
@@ -19,6 +20,11 @@ import java.util.Set;
 public class FoodController {
     private final FoodService foodService;
 
+
+    @GetMapping("/get_food/{foodId}")
+    public FoodDto getFoodById(@UuidChecker @PathVariable String foodId) {
+        return foodService.getFood(foodId);
+    }
     @GetMapping("/show_food/{foodId}")
     public Food showFoodById(@UuidChecker @PathVariable String foodId) {
         return foodService.showFood(foodId);
