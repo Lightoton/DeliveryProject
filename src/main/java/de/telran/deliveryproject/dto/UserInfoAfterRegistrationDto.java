@@ -1,14 +1,12 @@
 package de.telran.deliveryproject.dto;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
-public class UserInfoDto {
+@Value
+public class UserInfoAfterRegistrationDto {
     String status = "COMPLETED";
     String firstname;
     String lastname;
     String phoneNumber;
-    String username;
     String email;
-    String password;
 }

@@ -3,6 +3,7 @@ package de.telran.deliveryproject.controller;
 import de.telran.deliveryproject.annotation.CreateUserInfoMapping;
 import de.telran.deliveryproject.annotation.DeleteUserInfoByIdMapping;
 import de.telran.deliveryproject.annotation.GetUserInfoByIdMapping;
+import de.telran.deliveryproject.dto.UserInfoAfterRegistrationDto;
 import de.telran.deliveryproject.dto.UserInfoDto;
 import de.telran.deliveryproject.entity.UserInfo;
 import de.telran.deliveryproject.service.interfaces.UserInfoService;
@@ -25,6 +26,11 @@ public class UserInfoController {
     @GetUserInfoByIdMapping(path = "/getUserInfo/{infoId}")
     public UserInfoDto getUserInfo(@UuidChecker @PathVariable String infoId){
         return userInfoService.getUserInfoDto(infoId);
+    }
+
+    @CreateUserInfoMapping(path = "/create_user_info_new")
+    public UserInfoAfterRegistrationDto createUserInfoNew(@RequestBody UserInfoDto userInfoDto){
+        return userInfoService.createUserInfoByDto(userInfoDto);
     }
 
     @PutMapping("update_info/{infoId}")

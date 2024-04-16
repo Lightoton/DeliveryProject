@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -42,6 +43,9 @@ public class UserInfo {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "updated_at")
+    private transient LocalDateTime updated_at;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

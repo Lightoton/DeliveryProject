@@ -1,5 +1,6 @@
 package de.telran.deliveryproject.service.interfaces;
 
+import de.telran.deliveryproject.dto.UserInfoAfterRegistrationDto;
 import de.telran.deliveryproject.dto.UserInfoDto;
 import de.telran.deliveryproject.entity.UserInfo;
 
@@ -13,4 +14,5 @@ public interface UserInfoService {
     UserInfoDto getUserInfoDto(String id);
 
     UserInfoDto updateUserInfoDtoById(String id, UserInfoDto userInfoDto);
+    UserInfoAfterRegistrationDto createUserInfoByDto(UserInfoDto userInfoDto);
 }

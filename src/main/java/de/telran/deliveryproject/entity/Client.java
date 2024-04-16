@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
@@ -29,7 +30,7 @@ public class Client {
     private UUID uId;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "address")
     private String address;
@@ -39,7 +40,7 @@ public class Client {
     private Rating rating;
 
     @Column(name = "registration_date")
-    private LocalDateTime registrationDate;
+    private transient LocalDateTime registrationDate;
 
     @OneToOne
     @JoinColumn(name = "user_info_id")
