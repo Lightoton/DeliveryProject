@@ -9,9 +9,7 @@ import de.telran.deliveryproject.exception.errorMessege.ErrorMessage;
 import de.telran.deliveryproject.generator.PasswordGenerator;
 import de.telran.deliveryproject.mapper.ClientMapper;
 import de.telran.deliveryproject.mapper.UserInfoMapper;
-import de.telran.deliveryproject.repository.ClientRepository;
-import de.telran.deliveryproject.repository.DepartmentRepository;
-import de.telran.deliveryproject.repository.UserInfoRepository;
+import de.telran.deliveryproject.repository.*;
 import de.telran.deliveryproject.service.interfaces.ClientService;
 import de.telran.deliveryproject.utils.PasswordHashing;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +24,8 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final UserInfoRepository userInfoRepository;
     private final DepartmentRepository departmentRepository;
+    private final RoleRepository roleRepository;
+    private final UserRoleRepository userRoleRepository;
     private final ClientMapper mapper;
 
 
@@ -57,9 +57,10 @@ public class ClientServiceImpl implements ClientService {
             client.getUserInfo().setPassword(hashedPassword);
         }
         client.setDepartment(department);
+        client.getUserInfo().setRoles(roleRepository.getRoleByRoleName("User"));
         userInfoRepository.save(client.getUserInfo());
-        clientRepository.save(client);
-        return mapper.toDto(client);
+        Client clientFromDB = clientRepository.save(client);
+        return mapper.toDto(clientFromDB);
     }
 
 
