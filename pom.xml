@@ -94,6 +94,14 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
+
 
 
     </dependencies>
@@ -111,6 +119,54 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.11</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>org.jacoco.agent</artifactId>
+                        <version>0.8.11</version>
+                        <scope>compile</scope>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <outputDirectory>
+                        ${project.build.directory}/site
+                    </outputDirectory>
+
+                    <excludes>
+                        <exclude>de/telran/deliveryproject/dto/*</exclude>
+                        <exclude>de/telran/deliveryproject/repository/*</exclude>
+                        <exclude>de/telran/deliveryproject/configuration/*</exclude>
+                        <exclude>de/telran/deliveryproject/annotation/*</exclude>
+                        <exclude>de/telran/deliveryproject/mapper/*</exclude>
+                        <exclude>de/telran/deliveryproject/DeliveryProjectApplication.class</exclude>
+                    </excludes>
+
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
             </plugin>
         </plugins>
     </build>

@@ -37,4 +37,5 @@ public class Authority {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
 }

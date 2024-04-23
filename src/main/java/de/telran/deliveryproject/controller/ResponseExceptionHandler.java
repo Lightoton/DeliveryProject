@@ -1,9 +1,6 @@
 package de.telran.deliveryproject.controller;
 
-import de.telran.deliveryproject.exception.CourierNotFoundException;
-import de.telran.deliveryproject.exception.ErrorExtension;
-import de.telran.deliveryproject.exception.UserInformationIsExistException;
-import de.telran.deliveryproject.exception.UserInformationNotFoundException;
+import de.telran.deliveryproject.exception.*;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +40,13 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ErrorExtension(
                 e.getMessage(), HttpStatus.CONFLICT),
                 HttpStatus.CONFLICT);
+
+    }
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ResponseEntity<ErrorExtension> handleClientNotFoundException(Exception e) {
+        return new ResponseEntity<>(new ErrorExtension(
+                e.getMessage(), HttpStatus.NOT_FOUND),
+                HttpStatus.NOT_FOUND);
 
     }
 

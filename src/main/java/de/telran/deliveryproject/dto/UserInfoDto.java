@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserInfoDto {
-    String status = "COMPLETED";
+    final String status = "COMPLETED";
     String firstname;
     String lastname;
     String phoneNumber;

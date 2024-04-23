@@ -1,6 +1,7 @@
 package de.telran.deliveryproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.telran.deliveryproject.dto.FoodDto;
 import de.telran.deliveryproject.entity.Food;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,11 +30,12 @@ class FoodControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+    private final String foodTestId= "63623962-6466-3665-2d33-3438382d3434";
 
     @Test
     void showFoodById() throws Exception {
         Food food = new Food();
-        food.setFId(UUID.fromString("63623962-6466-3665-2d33-3438382d3434"));
+        food.setFId(UUID.fromString(foodTestId));
         food.setCalorie(350.0);
         food.setPrice(BigDecimal.valueOf(12.99));
         food.setTitle("Grilled Chicken Salad");
@@ -64,5 +66,25 @@ class FoodControllerTest {
         Food[] actual = objectMapper.readValue(foodsResultJson, Food[].class);
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
         Assertions.assertEquals(foods.size(), actual.length);
+    }
+
+    @Test
+    void getFoodById() throws Exception {
+        FoodDto foodDto = new FoodDto();
+        foodDto.setTitle("Grilled Chicken Salad");
+        foodDto.setCalorie("350.0");
+        foodDto.setPrice("12.99");
+
+        MvcResult mvcResult = mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get("/food/get_food/63623962-6466-3665-2d33-3438382d3434")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        String foodResultJson = mvcResult.getResponse().getContentAsString();
+
+        FoodDto actual = objectMapper.readValue(foodResultJson, FoodDto.class);
+        Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
+        Assertions.assertEquals(foodDto, actual);
     }
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ClientAfterRegistrationDto {
-    String status = "COMPLETED";
+    final String status = "COMPLETED";
     String address;
     String dateOfBirth;
     UserInfoAfterRegistrationDto userInfoAfterRegistrationDto;
