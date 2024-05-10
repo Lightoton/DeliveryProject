@@ -88,4 +88,9 @@ public class UserInfoServiceImpl implements UserInfoService {
         return mapper.afterRegistrationDto(userInfo);
     }
 
+    @Override
+    public Optional<UserInfo> getUserInfoByUsername(String username) {
+        return userInfoRepository.findByUsername(username);
+    }
+
 }

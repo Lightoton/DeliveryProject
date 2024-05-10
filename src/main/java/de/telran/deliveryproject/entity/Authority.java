@@ -29,7 +29,7 @@ public class Authority {
     @Column(name = "authority")
     private String authority;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinTable(
             name = "role_authority",

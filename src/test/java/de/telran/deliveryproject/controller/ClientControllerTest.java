@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -27,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql("/drop_test_tables.sql")
 @Sql("/create_test_tables.sql")
 @Sql("/insert_test_data.sql")
+@WithMockUser(username = "alice", password = "12345", roles = "CLIENT")
 class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -98,7 +100,7 @@ class ClientControllerTest {
     private static ClientDto getClient(){
         Faker faker = new Faker();
         UserInfoDto userInfoDto = new UserInfoDto();
-        userInfoDto.setPhoneNumber(faker.phoneNumber().phoneNumber());
+        userInfoDto.setPhoneNumber(faker.phoneNumber().phoneNumber().substring(0,10));
         userInfoDto.setUsername(faker.funnyName().name());
         userInfoDto.setEmail("test@gmail.com");
         userInfoDto.setFirstname(faker.name().firstName());

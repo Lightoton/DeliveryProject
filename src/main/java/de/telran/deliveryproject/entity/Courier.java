@@ -53,15 +53,16 @@ public class Courier {
 
     @OneToOne
     @JoinColumn(name = "user_info_id")
+    @JsonIgnore
     private UserInfo userInfo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     @JsonIgnore
     private Order order;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     @JsonIgnore
     private Department department;

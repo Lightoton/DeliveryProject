@@ -23,14 +23,4 @@ public class OrderController {
     public void deleteOrderById(@PathVariable String orderId) {
         orderService.deleteOrderById(orderId);
     }
-
-    @PostMapping("/create_order/{restaurantId},{clientId},{supportManagerId},{departmentId},{courierId}")
-    public Order createOrder(@RequestBody Order order,
-                             @UuidChecker @PathVariable String restaurantId,
-                             @UuidChecker @PathVariable String clientId,
-                             @UuidChecker @PathVariable String supportManagerId,
-                             @UuidChecker @PathVariable String departmentId,
-                             @UuidChecker @PathVariable String courierId) {
-        return orderService.createOrder(order, restaurantId, clientId, supportManagerId, departmentId, courierId);
-    }
 }

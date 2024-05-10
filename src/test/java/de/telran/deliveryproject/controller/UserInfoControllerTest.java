@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -20,6 +21,7 @@ import java.util.UUID;
 @Sql("/drop_test_tables.sql")
 @Sql("/create_test_tables.sql")
 @Sql("/insert_test_data.sql")
+@WithMockUser(username = "alice", password = "12345", roles = "CLIENT")
 class UserInfoControllerTest {
 
     @Autowired
@@ -37,7 +39,7 @@ class UserInfoControllerTest {
         expected.setEmail("alice@example.com");
         expected.setPhoneNumber("111222333");
         expected.setUsername("alice");
-        expected.setPassword("password789");
+        expected.setPassword("$2a$12$mUHd9lrvRaB.qehTJz3x5eD7AmaxjVgfndtQfiJxb/9Ab///GVVNW");
 
         MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders

@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Validated
 @RestController
 @RequestMapping("/user_info")
@@ -54,4 +56,8 @@ public class UserInfoController {
         userInfoService.deleteUserInfo(infoId);
     }
 
+    @GetMapping("/get_userinfo/{username}")
+    public Optional<UserInfo> getUserInfoByUsername(@PathVariable String username) {
+        return userInfoService.getUserInfoByUsername(username);
+    }
 }

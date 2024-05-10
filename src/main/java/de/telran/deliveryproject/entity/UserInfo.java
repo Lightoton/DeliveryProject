@@ -47,7 +47,7 @@ public class UserInfo {
     @Column(name = "updated_at")
     private transient LocalDateTime updated_at;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_info_id"),

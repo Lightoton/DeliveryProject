@@ -3,4 +3,4 @@ VALUES
     (UUID_TO_BIN(UUID()), 'Admin Access', NOW()),
     (UUID_TO_BIN(UUID()), 'Employee Access', NOW()),
     (UUID_TO_BIN(UUID()), 'Manager Access', NOW()),
-    (UUID_TO_BIN(UUID()), 'User access', NOW());
+    (UUID_TO_BIN(UUID()), 'Client access', NOW());

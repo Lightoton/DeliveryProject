@@ -4,6 +4,8 @@ import de.telran.deliveryproject.dto.UserInfoAfterRegistrationDto;
 import de.telran.deliveryproject.dto.UserInfoDto;
 import de.telran.deliveryproject.entity.UserInfo;
 
+import java.util.Optional;
+
 public interface UserInfoService {
     UserInfo showUser(String id);
 
@@ -15,4 +17,6 @@ public interface UserInfoService {
 
     UserInfoDto updateUserInfoDtoById(String id, UserInfoDto userInfoDto);
     UserInfoAfterRegistrationDto createUserInfoByDto(UserInfoDto userInfoDto);
+
+    Optional<UserInfo> getUserInfoByUsername(String username);
 }

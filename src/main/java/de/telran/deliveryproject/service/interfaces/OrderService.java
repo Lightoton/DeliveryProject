@@ -5,9 +5,5 @@ import de.telran.deliveryproject.entity.Order;
 public interface OrderService {
     Order showOrder(String id);
 
-    Order createOrder(Order order, String restaurantId, String clientId, String supportManagerId,
-                      String departmentId, String courierId);
-
-
     void deleteOrderById(String id);
 }

@@ -57,7 +57,7 @@ public class ClientServiceImpl implements ClientService {
             client.getUserInfo().setPassword(hashedPassword);
         }
         client.setDepartment(department);
-        client.getUserInfo().setRoles(roleRepository.getRoleByRoleName("User"));
+        client.getUserInfo().setRoles(roleRepository.getRoleByRoleName("CLIENT_ROLE"));
         userInfoRepository.save(client.getUserInfo());
         Client clientFromDB = clientRepository.save(client);
         return mapper.toDto(clientFromDB);

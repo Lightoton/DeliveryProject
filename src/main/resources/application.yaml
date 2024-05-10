@@ -1,3 +1,6 @@
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem
 spring:
   profiles:
     active: dev
@@ -8,9 +11,9 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://localhost:3306/delivery_db
-    username: root
-    password: YSE444esylightoton
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:delivery_db}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:ZSE444eszlightoton}
     driver-class-name: com.mysql.cj.jdbc.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
