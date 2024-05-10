@@ -6,7 +6,7 @@ create table if not exists user_info
     email        varchar(60) not null unique,
     phone_number varchar(20) not null unique,
     username     varchar(50) not null unique,
-    password     varchar(32) not null unique,
+    password     varchar(70) not null unique,
     updated_at   timestamp default NOW() on update NOW()
 );
 create table if not exists managers

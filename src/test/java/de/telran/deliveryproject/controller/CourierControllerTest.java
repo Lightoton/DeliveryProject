@@ -15,6 +15,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.security.test.context.support.WithMockUser;
+
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.UUID;
 @Sql("/drop_test_tables.sql")
 @Sql("/create_test_tables.sql")
 @Sql("/insert_test_data.sql")
+@WithMockUser(username = "alice", password = "12345", roles = "CLIENT")
 class CourierControllerTest {
     @Autowired
     private MockMvc mockMvc;
